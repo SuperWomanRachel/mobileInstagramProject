@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11BDB310215F360B004590A0 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BDB30F215F360B004590A0 /* AuthService.swift */; };
+		11BDB312215F3795004590A0 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BDB311215F3795004590A0 /* Configuration.swift */; };
 		54129EA62150B5E800CEC4A4 /* AddPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54129EA52150B5E800CEC4A4 /* AddPhotoViewController.swift */; };
 		8279B2210B626121F021F1F7 /* Pods_MyInsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 607B37A54F448C5D320732BA /* Pods_MyInsUITests.framework */; };
 		85016B9CAACA9F9A3E85B6EF /* Pods_MyInsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CCC56EB0BCE8D52A80C330A /* Pods_MyInsTests.framework */; };
@@ -18,6 +20,15 @@
 		FEA641F2214F8E58002BEAB1 /* MyInsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA641F1214F8E58002BEAB1 /* MyInsTests.swift */; };
 		FEA641FD214F8E58002BEAB1 /* MyInsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA641FC214F8E58002BEAB1 /* MyInsUITests.swift */; };
 		FEA6420B214F8F00002BEAB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEA6420A214F8F00002BEAB1 /* GoogleService-Info.plist */; };
+		FEF963D82160C5180003F861 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF963D72160C5180003F861 /* Post.swift */; };
+		FEF963DA2160C7F60003F861 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF963D92160C7F60003F861 /* User.swift */; };
+		FEF963DE2160D8860003F861 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF963DD2160D8860003F861 /* HomeTableViewCell.swift */; };
+		FEF963E02160DB5C0003F861 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF963DF2160DB5C0003F861 /* HomeTableViewController.swift */; };
+		FEF9642A216227560003F861 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF96427216227550003F861 /* ProgressHUD.m */; };
+		FEF9642B216227560003F861 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FEF96428216227560003F861 /* ProgressHUD.bundle */; };
+		FEF9643221634F110003F861 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9643021634F110003F861 /* SignInViewController.swift */; };
+		FEF9643321634F110003F861 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9643121634F110003F861 /* SignUpViewController.swift */; };
+		FEF9643521634F690003F861 /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEF9643421634F690003F861 /* Start.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +51,9 @@
 /* Begin PBXFileReference section */
 		0C475D4BD50A63A162DEB816 /* Pods-MyInsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyInsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyInsTests/Pods-MyInsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0CCC56EB0BCE8D52A80C330A /* Pods_MyInsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyInsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		11BDB30F215F360B004590A0 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		11BDB311215F3795004590A0 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		11BDB313215F43E4004590A0 /* MyIns-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyIns-Bridging-Header.h"; sourceTree = "<group>"; };
 		25299F621832C38E63C01DE7 /* Pods-MyIns.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyIns.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyIns/Pods-MyIns.release.xcconfig"; sourceTree = "<group>"; };
 		54129EA52150B5E800CEC4A4 /* AddPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotoViewController.swift; sourceTree = "<group>"; };
 		607B37A54F448C5D320732BA /* Pods_MyInsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyInsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +75,16 @@
 		FEA641FC214F8E58002BEAB1 /* MyInsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInsUITests.swift; sourceTree = "<group>"; };
 		FEA641FE214F8E58002BEAB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FEA6420A214F8F00002BEAB1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FEF963D72160C5180003F861 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		FEF963D92160C7F60003F861 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FEF963DD2160D8860003F861 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		FEF963DF2160DB5C0003F861 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
+		FEF96427216227550003F861 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
+		FEF96428216227560003F861 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
+		FEF96429216227560003F861 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
+		FEF9643021634F110003F861 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		FEF9643121634F110003F861 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		FEF9643421634F690003F861 /* Start.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Start.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,9 +144,13 @@
 				FEA641DB214F8E55002BEAB1 /* MyIns */,
 				FEA641F0214F8E58002BEAB1 /* MyInsTests */,
 				FEA641FB214F8E58002BEAB1 /* MyInsUITests */,
+				FEF96428216227560003F861 /* ProgressHUD.bundle */,
+				FEF96429216227560003F861 /* ProgressHUD.h */,
+				FEF96427216227550003F861 /* ProgressHUD.m */,
 				FEA641DA214F8E55002BEAB1 /* Products */,
 				082DB96DA985AC4A2B465089 /* Pods */,
 				934CB8CEF99B804BC3179528 /* Frameworks */,
+				11BDB313215F43E4004590A0 /* MyIns-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -139,13 +167,22 @@
 		FEA641DB214F8E55002BEAB1 /* MyIns */ = {
 			isa = PBXGroup;
 			children = (
+				FEF9643021634F110003F861 /* SignInViewController.swift */,
+				FEF9643121634F110003F861 /* SignUpViewController.swift */,
 				54129EA52150B5E800CEC4A4 /* AddPhotoViewController.swift */,
+				FEF963DF2160DB5C0003F861 /* HomeTableViewController.swift */,
+				FEF963DD2160D8860003F861 /* HomeTableViewCell.swift */,
 				FEA641DC214F8E55002BEAB1 /* AppDelegate.swift */,
+				11BDB311215F3795004590A0 /* Configuration.swift */,
+				11BDB30F215F360B004590A0 /* AuthService.swift */,
+				FEF9643421634F690003F861 /* Start.storyboard */,
 				FEA641E0214F8E55002BEAB1 /* Main.storyboard */,
 				FEA641E3214F8E58002BEAB1 /* Assets.xcassets */,
 				FEA641E5214F8E58002BEAB1 /* LaunchScreen.storyboard */,
 				FEA641E8214F8E58002BEAB1 /* Info.plist */,
 				FEA6420A214F8F00002BEAB1 /* GoogleService-Info.plist */,
+				FEF963D72160C5180003F861 /* Post.swift */,
+				FEF963D92160C7F60003F861 /* User.swift */,
 			);
 			path = MyIns;
 			sourceTree = "<group>";
@@ -240,6 +277,7 @@
 				TargetAttributes = {
 					FEA641D8214F8E55002BEAB1 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 					FEA641EC214F8E58002BEAB1 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -278,8 +316,10 @@
 			files = (
 				FEA641E7214F8E58002BEAB1 /* LaunchScreen.storyboard in Resources */,
 				FEA6420B214F8F00002BEAB1 /* GoogleService-Info.plist in Resources */,
+				FEF9642B216227560003F861 /* ProgressHUD.bundle in Resources */,
 				FEA641E4214F8E58002BEAB1 /* Assets.xcassets in Resources */,
 				FEA641E2214F8E55002BEAB1 /* Main.storyboard in Resources */,
+				FEF9643521634F690003F861 /* Start.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,14 +385,18 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-MyIns/Pods-MyIns-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,8 +429,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEF9643321634F110003F861 /* SignUpViewController.swift in Sources */,
+				11BDB312215F3795004590A0 /* Configuration.swift in Sources */,
+				FEF963E02160DB5C0003F861 /* HomeTableViewController.swift in Sources */,
 				54129EA62150B5E800CEC4A4 /* AddPhotoViewController.swift in Sources */,
 				FEA641DD214F8E55002BEAB1 /* AppDelegate.swift in Sources */,
+				FEF963D82160C5180003F861 /* Post.swift in Sources */,
+				FEF963DE2160D8860003F861 /* HomeTableViewCell.swift in Sources */,
+				FEF9642A216227560003F861 /* ProgressHUD.m in Sources */,
+				FEF963DA2160C7F60003F861 /* User.swift in Sources */,
+				FEF9643221634F110003F861 /* SignInViewController.swift in Sources */,
+				11BDB310215F360B004590A0 /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,6 +613,7 @@
 			baseConfigurationReference = E7F5848F0CED7B3837AD5AC2 /* Pods-MyIns.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6YSKKU86UA;
 				INFOPLIST_FILE = MyIns/Info.plist;
@@ -570,8 +624,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = mobile.proj2.MyIns;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MyIns-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -580,6 +636,7 @@
 			baseConfigurationReference = 25299F621832C38E63C01DE7 /* Pods-MyIns.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6YSKKU86UA;
 				INFOPLIST_FILE = MyIns/Info.plist;
@@ -590,8 +647,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = mobile.proj2.MyIns;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MyIns-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

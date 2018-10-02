@@ -10,24 +10,138 @@ import UIKit
 import CoreImage
 import Alamofire
 import AlamofireImage
+import FirebaseStorage
+import FirebaseDatabase
+import FirebaseAuth
+import CoreLocation
+import GeoFire
 
-class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate, PopoverViewControllerDelegate {
+class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate, PopoverViewControllerDelegate, CLLocationManagerDelegate {
+    
+    //ADDED by @jingyuanb
+    var locationManager = CLLocationManager() //location
+//    var myLocation: CLLocation?
+    var myLocationCoor: CLLocationCoordinate2D?
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var libraryButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var filterButton: UIBarButtonItem!
+    //ADDED by @jingyuanb
+    @IBOutlet weak var sharePostBtn: UIButton!
+    @IBOutlet weak var captionTextField: UITextView!
     
     let imagePicker = UIImagePickerController()
     var originalImage = UIImage()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
-        
         showImagePickerForSourceType(.photoLibrary)
+        //ADDED by @jingyuanb
+        startUseLocation()
         
     }
+    
+    //ADDED by @jingyuanb
+    fileprivate func startUseLocation() {
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+            print("allowed to use location")
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //ADD THIS by @jingyuanb
+        handleSharePostValid()
+    }
+    
+    //ADD THIS by @jingyuanb
+    @IBAction func sharePostBtnClicked(_ sender: Any) {
+        view.endEditing(true)
+        ProgressHUD.show("Please wait...")
+        if let photoData = UIImagePNGRepresentation(imageView.image!) {
+            let photoID = NSUUID().uuidString
+            let storageRef = Storage.storage().reference().child("postPhotos").child(photoID)
+            storageRef.putData(photoData, metadata: nil) { (metadata, error) in
+                if error != nil {
+                    ProgressHUD.showError(error?.localizedDescription)
+                    return
+                }
+                storageRef.downloadURL(completion: { (url, error) in
+                    if error != nil{
+                        ProgressHUD.showError(error?.localizedDescription)
+                        return
+                    }
+                    self.sendDataToDB(photoURL: (url?.absoluteString)!)
+                })
+            }
+            
+        }
+        handleSharePostValid()
+    }
+    //ADDED by @jingyuanb
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    //ADD THIS by @jingyuanb
+    func handleSharePostValid(){
+        if imageView != nil && imageView.image != nil {
+            sharePostBtn.isEnabled = true
+            sharePostBtn.setTitleColor(UIColor.blue, for: UIControlState.normal)
+//            self.sharePostBtn.backgroundColor=UIColor(red: 41/255, green: 109/255, blue: 255/255, alpha: 1)
+        }else {
+            sharePostBtn.isEnabled = false
+            sharePostBtn.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
+//            self.sharePostBtn.backgroundColor=UIColor(red: 170/255, green: 199/255, blue: 255/255, alpha: 1)
+        }
+    }
+    //ADD THIS by @jingyuanb
+    func sendDataToDB(photoURL: String){
+        let caption = self.captionTextField.text!
+        let dbRef = Database.database().reference().child("posts")
+        let postID = dbRef.childByAutoId().key
+        guard let currentUser = Auth.auth().currentUser else { return  }
+        let currentUserID = currentUser.uid
+        let postRef = dbRef.child(postID!)
+        let now = Config.getCurrentTimeStamp()
+        let latitude = Double(String(format: "%.1f", myLocationCoor!.latitude))
+        let longitude = Double(String(format: "%.1f", myLocationCoor!.longitude))
+        postRef.setValue(["uid": currentUserID, "photoURL": photoURL, "caption": caption, "timestamp": now, "longitude": longitude!, "latitude": latitude!]) { (error, dbRef) in
+            if error != nil {
+                ProgressHUD.showError(error?.localizedDescription)
+                return
+            }
+            ProgressHUD.showSuccess("Success")
+            self.imageView.image = nil
+            self.captionTextField.text = ""
+            self.handleSharePostValid()
+            self.tabBarController?.selectedIndex = 0
+            }
+        
+    }
+    //ADDED by @jingyuanb
+    func  locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
+    //ADDED by @jingyuanb
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first{
+//            print(location.coordinate) //print out the coordinates of your location
+//            self.myLocation = location
+            self.myLocationCoor = location.coordinate
+            
+        }
+    }
+    
     
     func filtering(filterOption: String){
         
@@ -146,6 +260,10 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func clickClearButton(_ sender: UIBarButtonItem) {
         
         self.imageView.image = nil
+        
+        
+        //ADD THIS by @jingyuanb
+        self.handleSharePostValid()
     }
     
     @IBAction func clickCameraButton(_ sender: UIBarButtonItem) {
@@ -180,6 +298,9 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
                 self.originalImage = image
                 self.imageView.image = image
                 self.imageView.contentMode = .scaleAspectFit
+                
+               //ADD THIS by @jingyuanb
+                self.handleSharePostValid()
             }
         }
     }
@@ -230,5 +351,10 @@ class PopoverViewController: UITableViewController {
             self.delegate?.messageData(type: "filter", data: sender.currentTitle! as AnyObject)
         }
     }
+
+    
 }
+
+
+
 

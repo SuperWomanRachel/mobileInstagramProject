@@ -8,6 +8,10 @@ target 'MyIns' do
   # Pods for MyIns
   pod 'Firebase/Core'
   pod 'AlamofireImage', '~> 3.2'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
+  pod 'GeoFire', :git => 'https://github.com/firebase/geofire-objc.git'
 
   target 'MyInsTests' do
     inherit! :search_paths
