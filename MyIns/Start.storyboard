@@ -290,7 +290,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="profile_signUp" width="650" height="674"/>
+        <image name="profile_signUp" width="29" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6sn-Wm-xzY"/>
