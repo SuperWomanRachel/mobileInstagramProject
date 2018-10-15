@@ -454,10 +454,10 @@
             </objects>
             <point key="canvasLocation" x="788" y="1834"/>
         </scene>
-        <!--View Controller-->
+        <!--Activity View Controller-->
         <scene sceneID="T1T-ev-tFO">
             <objects>
-                <viewController id="YPd-d2-K9C" sceneMemberID="viewController">
+                <viewController id="YPd-d2-K9C" customClass="ActivityViewController" customModule="MyIns" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RFh-3o-l76">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -466,7 +466,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="65" id="1sB-We-vW8">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ActivityTableViewCell" rowHeight="65" id="1sB-We-vW8" customClass="ActivityTableViewCell" customModule="MyIns" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1sB-We-vW8" id="SNp-ux-WbM">
@@ -515,8 +515,18 @@
                                                 <constraint firstItem="cjo-9g-f9f" firstAttribute="top" secondItem="SNp-ux-WbM" secondAttribute="topMargin" constant="23" id="v3q-fD-qY6"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="descriptionLabel" destination="cjo-9g-f9f" id="TkD-lg-jNh"/>
+                                            <outlet property="photo" destination="jje-bu-aSQ" id="uM4-hJ-sOa"/>
+                                            <outlet property="profileImage" destination="k6L-Z7-ewe" id="Joi-t7-uOo"/>
+                                            <outlet property="timeLabel" destination="xpQ-Qb-VZD" id="uLl-Mj-9Cx"/>
+                                            <outlet property="usernameLabel" destination="dOy-m3-N6I" id="VIl-aa-7GF"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="YPd-d2-K9C" id="WoQ-ms-Hl2"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -529,6 +539,9 @@
                         <viewLayoutGuide key="safeArea" id="4dj-by-zCq"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ibl-6z-n5n"/>
+                    <connections>
+                        <outlet property="tableView" destination="KWX-XG-VEB" id="AMV-gR-QZg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KF2-5I-tin" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
