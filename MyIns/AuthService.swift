@@ -62,6 +62,18 @@ class AuthService{
     }
     
     
+    static func logOut(_ sender: Any) {
+        print(Auth.auth().currentUser)
+        do {
+            try Auth.auth().signOut()
+        }catch let logoutError{
+            print(logoutError)
+        }
+        print(Auth.auth().currentUser)
+        
+        print("Log out ok!!!!")
+    }
+    
     static func setUserInformation(profileImageUrl:String, username:String, email:String, uid:String,onSuccess: @escaping () -> Void ){
         let ref = Database.database().reference()
         let userReference = ref.child("users")

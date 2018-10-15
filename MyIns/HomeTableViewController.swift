@@ -20,6 +20,8 @@ class HomeTableViewController: UITableViewController, CLLocationManagerDelegate 
 //    var users = [User]()
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
         homeTableView.dataSource = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -30,6 +32,15 @@ class HomeTableViewController: UITableViewController, CLLocationManagerDelegate 
         loadPosts()
         
     }
+
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    
+
     func loadPosts(){
         _ = Database.database().reference().child("posts").observe(.childAdded) { (snapshot: DataSnapshot) in
             if let dict = snapshot.value as? [String:Any] {
@@ -52,7 +63,11 @@ class HomeTableViewController: UITableViewController, CLLocationManagerDelegate 
                     }
                     }
                 }
+
+//                print(self.posts)
+
                 print(self.posts)
+
                 self.tableView.reloadData()
             }
         }
@@ -86,6 +101,23 @@ class HomeTableViewController: UITableViewController, CLLocationManagerDelegate 
        
     }
 
+    
+    //prepare: for sending the postid to comment view controller and like view controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "writeCommentSegue" {
+            let commentVC = segue.destination as! CommentViewController
+            let postID = sender as! String
+            commentVC.postID = postID
+        }
+        else if segue.identifier == "LikesListSegue"{
+            let commentVC = segue.destination as! LikesViewController
+            let postID = sender as! String
+            commentVC.postID = postID
+        }
+    }
+
+
+
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
@@ -95,6 +127,10 @@ class HomeTableViewController: UITableViewController, CLLocationManagerDelegate 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
         cell.post = posts[indexPath.row]
+
+        cell.homeTableView = self
+
+
 
         return cell
     }

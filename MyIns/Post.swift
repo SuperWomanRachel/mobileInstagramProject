@@ -7,7 +7,11 @@
 //
 
 import Foundation
+
+import FirebaseAuth
+
 //import CoreLocation
+
 
 class Post {
     var caption: String? = ""
@@ -18,6 +22,10 @@ class Post {
     var likes: Dictionary<String, Any>?
     var latitude: Double?
     var longitude: Double?
+
+    var isLike: Bool?
+
+
     
     static func transformPost(dict:[String: Any], postID: String) -> Post{
         let post = Post()
@@ -27,6 +35,19 @@ class Post {
         post.timestamp = dict["timestamp"] as? Int
         post.postID = postID
         post.likes = dict["likes"] as? Dictionary<String, Any>
+
+        if let currentUserId = Auth.auth().currentUser?.uid {
+            if post.likes != nil {
+                if post.likes?[currentUserId] != nil {
+                    post.isLike = true
+                }else{
+                    post.isLike = false
+                }
+            }else {
+                post.isLike = false
+            }
+        }
+
         post.latitude = dict["latitude"] as? Double
         post.longitude = dict["longitude"] as? Double
         return post

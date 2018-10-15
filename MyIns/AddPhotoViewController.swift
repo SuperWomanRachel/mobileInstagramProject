@@ -120,6 +120,9 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
                 ProgressHUD.showError(error?.localizedDescription)
                 return
             }
+
+            self.sendToMyPostsDB(postID: postID!, userID: currentUserID)
+
             ProgressHUD.showSuccess("Success")
             self.imageView.image = nil
             self.captionTextField.text = ""
@@ -128,6 +131,16 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
             }
         
     }
+    //send post to db: myPosts
+    func sendToMyPostsDB(postID: String, userID: String){
+        _ = Database.database().reference().child("myPosts").child(userID).child(postID).setValue(true) { (error, mypostRef) in
+            if error != nil {
+                ProgressHUD.showError(error?.localizedDescription)
+                return
+            }
+        }
+    }
+    
     //ADDED by @jingyuanb
     func  locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error.localizedDescription)
@@ -260,7 +273,11 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func clickClearButton(_ sender: UIBarButtonItem) {
         
         self.imageView.image = nil
-        
+
+        //ADD THIS by @jingyuanb
+        self.captionTextField.text = ""
+        self.handleSharePostValid()
+
         
         //ADD THIS by @jingyuanb
         self.handleSharePostValid()

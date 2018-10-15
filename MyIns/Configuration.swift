@@ -10,7 +10,9 @@ import Foundation
 
 class Config{
     
+    
     static var STORAGE_ROOT_REF = "gs://mobileproject-8906e.appspot.com"
+//    static var STORAGE_ROOT_REF = "gs://myins-52dda.appspot.com"
     
     
     static func timestampToDate(timeStamp: Int) -> String {

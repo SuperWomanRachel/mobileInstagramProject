@@ -68,6 +68,7 @@ PODS:
   - GoogleUtilities/Reachability (5.2.3):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.0)
+  - IQKeyboardManagerSwift (6.1.1)
   - leveldb-library (1.20)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -82,6 +83,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - GeoFire (from `https://github.com/firebase/geofire-objc.git`)
+  - IQKeyboardManagerSwift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -98,6 +100,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleUtilities
     - GTMSessionFetcher
+    - IQKeyboardManagerSwift
     - leveldb-library
     - nanopb
 
@@ -125,9 +128,10 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: fc4a4c3fe0144db9313cbf443ffe62e6b1d6268c
   GoogleUtilities: 6f681e27050c5e130325e89fa0316dfca826f954
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
+  IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
 
-PODFILE CHECKSUM: 2e6fa26705ce67cbda0e29b88165eb0c25a43bba
+PODFILE CHECKSUM: 01c293f3426460ca2007645e1f141f22f56c89a1
 
 COCOAPODS: 1.5.3

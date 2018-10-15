@@ -12,6 +12,7 @@ target 'MyIns' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'GeoFire', :git => 'https://github.com/firebase/geofire-objc.git'
+  pod 'IQKeyboardManagerSwift'
 
   target 'MyInsTests' do
     inherit! :search_paths

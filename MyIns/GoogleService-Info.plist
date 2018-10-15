@@ -23,22 +23,18 @@
 	<key>STORAGE_BUCKET</key>
 	<string>mobileproject-8906e.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:438942036137:ios:ac06b6db5926e4e8</string>
 	<key>DATABASE_URL</key>
 	<string>https://mobileproject-8906e.firebaseio.com</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Hey! I want to know where you&apos;re at for sorting the locations!</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Hey! I want to know where you&apos;re at for sorting the locations!</string>
 </dict>
 </plist>

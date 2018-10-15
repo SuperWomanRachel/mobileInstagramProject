@@ -8,6 +8,10 @@
 
 import Foundation
 
+import FirebaseDatabase
+
+
+
 class User {
     var uid: String? = ""
     var username: String? = ""
@@ -23,5 +27,7 @@ class User {
         return user
     }
     
+
+
    
 }
