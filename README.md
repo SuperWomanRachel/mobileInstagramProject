@@ -10,5 +10,5 @@ the first commit, but without the "logout" button.
 
 ## rachel second commit:  
 201810151739:  
-add comment view, like view.  
-
+add comment view, like view. this is a test!!!!!
+test if i can push
