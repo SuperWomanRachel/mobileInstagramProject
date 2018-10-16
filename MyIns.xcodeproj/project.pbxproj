@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1105F94221762BE90034D73F /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1105F94121762BE80034D73F /* Notification.swift */; };
 		1147D5312174E466003AFB51 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147D5302174E466003AFB51 /* ActivityViewController.swift */; };
 		1147D5332174E4A5003AFB51 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147D5322174E4A5003AFB51 /* ActivityTableViewCell.swift */; };
 		8279B2210B626121F021F1F7 /* Pods_MyInsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 607B37A54F448C5D320732BA /* Pods_MyInsUITests.framework */; };
@@ -60,6 +61,7 @@
 /* Begin PBXFileReference section */
 		0C475D4BD50A63A162DEB816 /* Pods-MyInsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyInsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyInsTests/Pods-MyInsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0CCC56EB0BCE8D52A80C330A /* Pods_MyInsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyInsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1105F94121762BE80034D73F /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		1147D5302174E466003AFB51 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		1147D5322174E4A5003AFB51 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		11BDB313215F43E4004590A0 /* MyIns-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyIns-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				FE4ECCAE2165EB9D00CE4542 /* ProfileViewController.swift */,
 				FE4ECC852165DB6100CE4542 /* AppDelegate.swift */,
 				FE4ECCA22165DD1C00CE4542 /* Assets.xcassets */,
+				1105F94121762BE80034D73F /* Notification.swift */,
 				FE4ECC7A2165DB5E00CE4542 /* Post.swift */,
 				FE4ECC872165DB6200CE4542 /* Comment.swift */,
 				FE4ECC812165DB6000CE4542 /* User.swift */,
@@ -414,6 +417,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/PagingMenuController/PagingMenuController.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -424,6 +428,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PagingMenuController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -462,6 +467,7 @@
 				FE4ECC8C2165DB6300CE4542 /* HomeTableViewController.swift in Sources */,
 				FE4ECC9B2165DB6300CE4542 /* Comment.swift in Sources */,
 				FE4ECC902165DB6300CE4542 /* CommentTableViewCell.swift in Sources */,
+				1105F94221762BE90034D73F /* Notification.swift in Sources */,
 				FE4ECCB32165F9A700CE4542 /* SignUpViewController.swift in Sources */,
 				FE4ECC9D2165DB6300CE4542 /* Configuration.swift in Sources */,
 				FE4ECCAF2165EB9D00CE4542 /* ProfileViewController.swift in Sources */,
