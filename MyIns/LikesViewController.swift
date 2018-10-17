@@ -22,7 +22,8 @@ class LikesViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //        print(postID)
         fetchUsersID()
         tableView.estimatedRowHeight = 70
-        tableView.rowHeight = UITableViewAutomaticDimension
+//        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = 70
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

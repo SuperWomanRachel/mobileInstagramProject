@@ -34,13 +34,17 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     let imagePicker = UIImagePickerController()
     var originalImage = UIImage()
     
-    
+//    let postID = "-LP0YpKv4qqs8NamN0oM"
+//    let currentUserID = "9IOntcgg8ne8kjwUAsrXDUfJGgv1"
+//    let photoURL = "https://firebasestorage.googleapis.com/v0/b/mobileproject-8906e.appspot.com/o/postPhotos%2FA78C7BF4-80DF-456D-95C4-3C5CF7900D8F?alt=media&token=e787dd80-729f-45a9-ad93-8086cef69f8a"
+//
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
         showImagePickerForSourceType(.photoLibrary)
         //ADDED by @jingyuanb
         startUseLocation()
+        self.captionTextField.toolbarPlaceholder = "Caption here"
         
     }
     
@@ -67,6 +71,7 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func sharePostBtnClicked(_ sender: Any) {
         view.endEditing(true)
         ProgressHUD.show("Please wait...")
+        
         if let photoData = UIImagePNGRepresentation(imageView.image!) {
             let photoID = NSUUID().uuidString
             let storageRef = Storage.storage().reference().child("postPhotos").child(photoID)
@@ -83,7 +88,7 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
                     self.sendDataToDB(photoURL: (url?.absoluteString)!)
                 })
             }
-            
+
         }
         handleSharePostValid()
     }
@@ -122,7 +127,7 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
             }
 
             self.sendToMyPostsDB(postID: postID!, userID: currentUserID)
-
+            self.sendToFeedsDB(postID: postID!, userID: currentUserID)
             ProgressHUD.showSuccess("Success")
             self.imageView.image = nil
             self.captionTextField.text = ""
@@ -131,6 +136,7 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
             }
         
     }
+    //ADDED by @jingyuanb
     //send post to db: myPosts
     func sendToMyPostsDB(postID: String, userID: String){
         _ = Database.database().reference().child("myPosts").child(userID).child(postID).setValue(true) { (error, mypostRef) in
@@ -138,6 +144,15 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
                 ProgressHUD.showError(error?.localizedDescription)
                 return
             }
+        }
+    }
+    //ADDED by @jingyuanb updated 20181017
+    //send post to db: feeds
+    func sendToFeedsDB(postID: String, userID: String){
+        Database.database().reference().child("feeds").child(userID).setValue([postID: true])
+        Database.database().reference().child("followers").child(userID).observe(.childAdded) { (snapshot) in
+            let followerID = snapshot.key
+            Database.database().reference().child("feeds").child(followerID).setValue([postID: true])
         }
     }
     
@@ -276,11 +291,9 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
 
         //ADD THIS by @jingyuanb
         self.captionTextField.text = ""
+        self.captionTextField.toolbarPlaceholder = "Caption here"
         self.handleSharePostValid()
 
-        
-        //ADD THIS by @jingyuanb
-        self.handleSharePostValid()
     }
     
     @IBAction func clickCameraButton(_ sender: UIBarButtonItem) {

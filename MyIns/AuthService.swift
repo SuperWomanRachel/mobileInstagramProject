@@ -63,13 +63,13 @@ class AuthService{
     
     
     static func logOut(_ sender: Any) {
-        print(Auth.auth().currentUser)
+        print(Auth.auth().currentUser!)
         do {
             try Auth.auth().signOut()
         }catch let logoutError{
             print(logoutError)
         }
-        print(Auth.auth().currentUser)
+        print(Auth.auth().currentUser!)
         
         print("Log out ok!!!!")
     }
