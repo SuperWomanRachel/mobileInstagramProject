@@ -13,6 +13,6 @@ the first commit, but without the "logout" button.
 add comment view, like view.
 
 ## rachel third commit:  
-201810181016:
+201810181016:  
 addPhotoViewController: add function of sending data to feeds.  
 HomeViewController: add function of only showing feeds which are shared by current user's following.
