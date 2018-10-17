@@ -1,21 +1,21 @@
 //
-//  ActivityTableViewCell.swift
+//  YouActivityTableViewCell.swift
 //  MyIns
 //
-//  Created by tq on 2018/10/15.
+//  Created by tq on 2018/10/17.
 //  Copyright © 2018年 Jingyuan Bi. All rights reserved.
 //
 
 import UIKit
 
-class ActivityTableViewCell: UITableViewCell {
+class YouActivityTableViewCell: UITableViewCell {
 
+    
     @IBOutlet weak var timeLabel: UILabel!
     
     @IBOutlet weak var profileImage: UIImageView!
     
     @IBOutlet weak var usernameLabel: UILabel!
-    
     
     @IBOutlet weak var descriptionLabel: UILabel!
     
@@ -23,7 +23,7 @@ class ActivityTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

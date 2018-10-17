@@ -7,37 +7,73 @@
 //
 
 import UIKit
+import PagingMenuController
 
 class ActivityViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    private struct PagingMenuOptions: PagingMenuControllerCustomizable{
+        
+        
+        private let followingActivityViewController = UIStoryboard(name: "Activity", bundle: nil).instantiateViewController(withIdentifier: "FollowingActivityViewController") as! FollowingActivityViewController
+        
+        private let youActivityViewController = UIStoryboard(name: "Activity", bundle: nil).instantiateViewController(withIdentifier: "YouActivityViewController") as! YouActivityViewController
+        
+        
+        fileprivate var componentType: ComponentType{
+            return .all(menuOptions: MenuOptions(),pagingControllers: pagingControllers)
+        }
+        
+        fileprivate var pagingControllers: [UIViewController]{
+            return [followingActivityViewController,youActivityViewController]
+        }
+        
+        fileprivate struct MenuOptions: MenuViewCustomizable{
+            var displayMode: MenuDisplayMode{
+                return .segmentedControl
+            }
+            
+            var itemsOptions: [MenuItemViewCustomizable]{
+                return [MenuItem1(),MenuItem2()]
+            }
+        }
+        
+        
+        
+        fileprivate struct MenuItem1: MenuItemViewCustomizable{
+            var displayMode: MenuItemDisplayMode{
+                return .text(title: MenuItemText(text: "FOLLOWING"))
+                
+            }
+        }
+        
+        fileprivate struct MenuItem2: MenuItemViewCustomizable{
+            var displayMode: MenuItemDisplayMode{
+                
+                return .text(title: MenuItemText(text: "YOU"))
+            }
+        }
+        
+        
+        
+    }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let options = PagingMenuOptions()
+        let pagingMenuController = PagingMenuController(options: options)
+        pagingMenuController.view.frame.origin.y += 100
+        pagingMenuController.view.frame.size.height -= 64
+        addChildViewController(pagingMenuController)
+        view.addSubview(pagingMenuController.view)
     }
     
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
 
 
 }
 
-
-extension ActivityViewController: UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityTableViewCell", for: indexPath) as! ActivityTableViewCell
-        
-        cell.usernameLabel.text = "helen"
-        //image = UIImage(named: "profile_signUp")
-        //cell.profileImage = UIImageView(image: image)
-        
-        return cell
-    }
-    
-    
-}
