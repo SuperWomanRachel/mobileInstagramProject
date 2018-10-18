@@ -14,6 +14,7 @@
 		1169A2B42177715A0049AB15 /* YouActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169A2B32177715A0049AB15 /* YouActivityViewController.swift */; };
 		1169A2B621777B8C0049AB15 /* FollowingActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169A2B521777B8C0049AB15 /* FollowingActivityTableViewCell.swift */; };
 		1169A2B821777BA90049AB15 /* YouActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169A2B721777BA90049AB15 /* YouActivityTableViewCell.swift */; };
+		11BEBC4821780DE800D0168C /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BEBC4721780DE800D0168C /* NotificationService.swift */; };
 		8279B2210B626121F021F1F7 /* Pods_MyInsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 607B37A54F448C5D320732BA /* Pods_MyInsUITests.framework */; };
 		85016B9CAACA9F9A3E85B6EF /* Pods_MyInsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CCC56EB0BCE8D52A80C330A /* Pods_MyInsTests.framework */; };
 		BEAB2D04B45023AD7BB09765 /* Pods_MyIns.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B741B1EB7371F43B5DD12F86 /* Pods_MyIns.framework */; };
@@ -73,6 +74,7 @@
 		1169A2B521777B8C0049AB15 /* FollowingActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingActivityTableViewCell.swift; sourceTree = "<group>"; };
 		1169A2B721777BA90049AB15 /* YouActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouActivityTableViewCell.swift; sourceTree = "<group>"; };
 		11BDB313215F43E4004590A0 /* MyIns-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyIns-Bridging-Header.h"; sourceTree = "<group>"; };
+		11BEBC4721780DE800D0168C /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		25299F621832C38E63C01DE7 /* Pods-MyIns.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyIns.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyIns/Pods-MyIns.release.xcconfig"; sourceTree = "<group>"; };
 		607B37A54F448C5D320732BA /* Pods_MyInsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyInsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68BAE431E94371AF6A637D55 /* Pods-MyInsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyInsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyInsUITests/Pods-MyInsUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				FE4ECCB22165F9A700CE4542 /* SignUpViewController.swift */,
 				FE4ECC892165DB6300CE4542 /* Configuration.swift */,
 				FE4ECCB42165FAA000CE4542 /* AuthService.swift */,
+				11BEBC4721780DE800D0168C /* NotificationService.swift */,
 				FE4ECC8A2165DB6300CE4542 /* Info.plist */,
 				FE4ECCB02165F31C00CE4542 /* GoogleService-Info.plist */,
 				FE4ECC7E2165DB5F00CE4542 /* AddPhotoViewController.swift */,
@@ -479,6 +482,7 @@
 				FE4ECC922165DB6300CE4542 /* AddPhotoViewController.swift in Sources */,
 				FE4ECC8C2165DB6300CE4542 /* HomeTableViewController.swift in Sources */,
 				FE4ECC9B2165DB6300CE4542 /* Comment.swift in Sources */,
+				11BEBC4821780DE800D0168C /* NotificationService.swift in Sources */,
 				FE4ECC902165DB6300CE4542 /* CommentTableViewCell.swift in Sources */,
 				1169A2B42177715A0049AB15 /* YouActivityViewController.swift in Sources */,
 				1105F94221762BE90034D73F /* Notification.swift in Sources */,

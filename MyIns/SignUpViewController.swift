@@ -79,9 +79,7 @@ class SignUpViewController: UIViewController {
                 ProgressHUD.showSuccess("Success")
                 print("on success, sigh UP BTN TOuch")
                 self.performSegue(withIdentifier: "signUpToTabbar", sender: nil)
-                //let mainstoryboard = UIStoryboard(name: "Main", bundle: nil)
-                //let signInVC = mainstoryboard.instantiateViewController(withIdentifier: "SignInViewController")
-                //self.present(signInVC, animated: true, completion: nil)
+                
                 
             }) { (errorMsg) in
                 print("show errorMsg")

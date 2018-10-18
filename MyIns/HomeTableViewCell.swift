@@ -146,6 +146,9 @@ class HomeTableViewCell: UITableViewCell {
         let likesRef = Database.database().reference().child("posts").child((post?.postID)!).child("likes")
         if self.likeBtn.image == UIImage(named: "like") {
             likesRef.child(currentUserID!).setValue(true)
+            
+            NotificationService.uploadLikeActivity(currentUserID: currentUserID!, postID: (post?.postID)!)
+            
             self.likeBtn.image = UIImage(named: "liked")
         }else{
             likesRef.child(currentUserID!).removeValue()
@@ -155,13 +158,37 @@ class HomeTableViewCell: UITableViewCell {
 
     }
 
+    //Edit by Tang Qian
+//    func sendLikeNotificationToDB(currentUserID: String,postID: String){
+//        let notificationRef = Database.database().reference().child("notifications")
+//        let notificationID = notificationRef.childByAutoId().key
+//        let newNotificationRef = notificationRef.child(notificationID!)
+//        newNotificationRef.setValue(["from": currentUserID,"type":"like","objectId":postID,"timestamp": Config.getCurrentTimeStamp()])
+//        print("send a like activity to notification")
+//
+//        sendLikeToFeedsDB( userID: currentUserID,likeNotificationID: notificationID!)
+//
+//    }
+    
+    //Edit by Tang Qian
+//    func sendLikeToFeedsDB(userID: String,likeNotificationID: String){
+//        Database.database().reference().child("feeds").child(userID).setValue([likeNotificationID: true])
+//
+//        Database.database().reference().child("followers").child(userID).observe(.childAdded) { (snapshot) in
+//            let followerID = snapshot.key
+//            Database.database().reference().child("feeds").child(followerID).setValue([likeNotificationID: true])
+//        }
+//
+//        print("send a like feed  to feeds")
+//    }
+    
+    
     @objc func commentImageViewClicked(){
         if let postID = post?.postID {
             homeTableView?.performSegue(withIdentifier: "writeCommentSegue", sender: postID)
         }
     }
     
-
 
 
     override func setSelected(_ selected: Bool, animated: Bool) {
