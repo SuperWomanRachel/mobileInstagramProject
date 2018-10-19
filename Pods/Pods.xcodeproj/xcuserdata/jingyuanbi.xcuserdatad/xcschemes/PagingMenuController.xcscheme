@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E4DD95323C54A78F879DAB0F1508B8E7"
-               BlueprintName = "nanopb"
+               BlueprintIdentifier = "6ADB3656BDFD85FB77E0CAB44BFF61E6"
+               BlueprintName = "PagingMenuController"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "nanopb.framework">
+               BuildableName = "PagingMenuController.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
