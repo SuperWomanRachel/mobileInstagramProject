@@ -550,7 +550,7 @@
                             </barButtonItem>
                         </leftBarButtonItems>
                         <rightBarButtonItems>
-                            <barButtonItem style="plain" id="S3O-bC-tx1">
+                            <barButtonItem id="S3O-bC-tx1">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ESg-mM-GyM">
                                     <rect key="frame" x="328" y="7" width="31" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -792,10 +792,10 @@
     </scenes>
     <resources>
         <image name="brightness" width="29" height="29"/>
-        <image name="comment" width="284" height="302"/>
+        <image name="comment" width="20" height="20"/>
         <image name="contrast" width="28" height="28"/>
         <image name="discover" width="20" height="20"/>
-        <image name="like" width="310" height="282"/>
+        <image name="like" width="20" height="20"/>
         <image name="photo" width="29" height="29"/>
         <image name="profile" width="20" height="20"/>
         <image name="user_feed" width="20" height="20"/>
