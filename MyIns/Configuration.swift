@@ -14,7 +14,7 @@ class Config{
     static var STORAGE_ROOT_REF = "gs://mobileproject-8906e.appspot.com"
 //    static var STORAGE_ROOT_REF = "gs://myins-52dda.appspot.com"
     
-    
+    // added by @jingyuanb
     static func timestampToDate(timeStamp: Int) -> String {
         //        let timeStamp = 1463241600
         let timeInterval: TimeInterval = TimeInterval(timeStamp)
@@ -25,7 +25,7 @@ class Config{
         //        print("time is :"+time)
         return time
     }
-    
+    // added by @jingyuanb
     static func dateToTimestamp(dateString: String) -> Int {
         let datefmatter = DateFormatter()
         datefmatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
@@ -35,7 +35,7 @@ class Config{
         print(dateStr)
         return dateStr
     }
-    
+    // added by @jingyuanb
     static func getCurrentTimeStamp() -> Int {
         let now = NSDate()
         let timeInterval:TimeInterval = now.timeIntervalSince1970
