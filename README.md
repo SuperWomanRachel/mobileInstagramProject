@@ -16,3 +16,11 @@ add comment view, like view.
 201810181016:  
 addPhotoViewController: add function of sending data to feeds.  
 HomeViewController: add function of only showing feeds which are shared by current user's following.
+
+## rachel fourth commit:  
+201810191600:  
+the third commit has a bug, and fixed it this time.   
+bug was: can only show one post and add only one post in feed.  
+
+
+
