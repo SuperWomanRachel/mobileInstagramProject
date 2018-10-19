@@ -152,7 +152,7 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
         Database.database().reference().child("feeds").child(userID).child(postID).setValue(true)
         Database.database().reference().child("followers").child(userID).observe(.childAdded) { (snapshot) in
             let followerID = snapshot.key
-            Database.database().reference().child("feeds").child(followerID).setValue([postID: true])
+            Database.database().reference().child("feeds").child(followerID).child(postID).setValue(true)
         }
     }
     
