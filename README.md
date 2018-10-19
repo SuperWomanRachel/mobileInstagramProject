@@ -22,5 +22,6 @@ HomeViewController: add function of only showing feeds which are shared by curre
 the third commit has a bug, and fixed it this time.   
 bug was: can only show one post and add only one post in feed.  
 
-
-
+## rachel fifth commit:  
+201810191743:  
+fixed bug of profile image url.  
