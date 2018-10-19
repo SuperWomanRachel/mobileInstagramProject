@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class FollowingActivityTableViewCell: UITableViewCell {
     
@@ -23,6 +24,7 @@ class FollowingActivityTableViewCell: UITableViewCell {
     
     var notification: Notification?{
         didSet{
+            
             updateView()
         }
     }
@@ -34,14 +36,11 @@ class FollowingActivityTableViewCell: UITableViewCell {
     
     func updateView(){
         
+        ActivityHelper.updateView(notification: notification!, timeLabel: timeLabel, descriptionLabel: descriptionLabel, photo: photo)
     }
 
     func setupUser(){
-        usernameLabel.text = "ytttttt"
-        if let photoUrlString = user?.imageUserURL{
-            let photoUrl = URL(string: photoUrlString)
-            profileImage.af_setImage(withURL: photoUrl!)
-        }
+        ActivityHelper.setupUser(user: user!, usernameLabel: usernameLabel, profileImage: profileImage)
         
     }
     

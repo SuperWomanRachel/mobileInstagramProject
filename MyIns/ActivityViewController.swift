@@ -56,9 +56,6 @@ class ActivityViewController: UIViewController {
         
     }
     
-    var notifications = [Notification]()
-    var users = [User]()
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -72,30 +69,6 @@ class ActivityViewController: UIViewController {
         
     }
     
-//    func loadActivity(){
-//        
-//        guard let currentUser = Auth.auth().currentUser?.uid else {
-//            return
-//        }
-//        NotificationService.observeNotification(withId: currentUser) { (notification) in
-//            guard let uid = notification.from else{
-//                return
-//            }
-//            self.fetchUser(uid: uid, completion: {
-//                self.notifications.insert(notification, at: 0)
-//            })
-//        }
-//        
-//    }
-//    
-//    func fetchUser(uid: String, completion: @escaping ()->Void){
-//        NotificationService.observeUser(withId: uid, completion: {
-//            user in
-//            self.users.insert(user, at: 0)
-//            completion()
-//        })
-//    
-//    }
     
 
     override func didReceiveMemoryWarning() {

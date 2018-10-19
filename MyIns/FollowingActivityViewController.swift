@@ -29,8 +29,7 @@ class FollowingActivityViewController: UIViewController {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
-        print("##############\n#########\n#######")
-        print(currentUser.uid)
+        
         NotificationService.observeNotification(withId: currentUser.uid,completion: {
             notification in
             guard let uid = notification.from else{
@@ -67,14 +66,10 @@ extension FollowingActivityViewController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "FollowingActivityTableViewCell", for: indexPath) as! FollowingActivityTableViewCell
         let notification = notifications[indexPath.row]
         let user = users[indexPath.row]
+        
         cell.notification = notification
         cell.user = user
-//        let image = UIImage(named: "liked")
-//        cell.usernameLabel.text = "following"
-//        cell.profileImage.image = image
-//        //image = UIImage(named: "profile_signUp")
-//        //cell.profileImage = UIImageView(image: image)
-        
+   
         return cell
     }
     

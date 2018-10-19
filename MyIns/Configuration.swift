@@ -26,6 +26,12 @@ class Config{
         return time
     }
     
+    static func timeToDate(timeStamp: Int) -> Date {
+        let timeInterval: TimeInterval = TimeInterval(Double(timeStamp))
+        let date = Date(timeIntervalSince1970: timeInterval)
+        return date
+    }
+    
     static func dateToTimestamp(dateString: String) -> Int {
         let datefmatter = DateFormatter()
         datefmatter.dateFormat = "dd/MM/yyyy HH:mm:ss"

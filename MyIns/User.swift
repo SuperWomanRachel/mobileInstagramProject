@@ -11,7 +11,6 @@ import Foundation
 import FirebaseDatabase
 
 
-
 class User {
     var uid: String? = ""
     var username: String? = ""
@@ -23,7 +22,7 @@ class User {
         user.uid = uid
         user.email = dict["email"] as? String
         user.username = dict["username"] as? String
-        user.imageUserURL = dict["imageUserURL"] as? String
+        user.imageUserURL = dict["profileImageUrl"] as? String
         return user
     }
     
