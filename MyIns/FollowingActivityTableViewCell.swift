@@ -21,6 +21,30 @@ class FollowingActivityTableViewCell: UITableViewCell {
     
     @IBOutlet weak var photo: UIImageView!
     
+    var notification: Notification?{
+        didSet{
+            updateView()
+        }
+    }
+    var user: User?{
+        didSet{
+            setupUser()
+        }
+    }
+    
+    func updateView(){
+        
+    }
+
+    func setupUser(){
+        usernameLabel.text = "ytttttt"
+        if let photoUrlString = user?.imageUserURL{
+            let photoUrl = URL(string: photoUrlString)
+            profileImage.af_setImage(withURL: photoUrl!)
+        }
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

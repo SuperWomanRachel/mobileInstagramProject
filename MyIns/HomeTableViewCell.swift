@@ -158,29 +158,6 @@ class HomeTableViewCell: UITableViewCell {
 
     }
 
-    //Edit by Tang Qian
-//    func sendLikeNotificationToDB(currentUserID: String,postID: String){
-//        let notificationRef = Database.database().reference().child("notifications")
-//        let notificationID = notificationRef.childByAutoId().key
-//        let newNotificationRef = notificationRef.child(notificationID!)
-//        newNotificationRef.setValue(["from": currentUserID,"type":"like","objectId":postID,"timestamp": Config.getCurrentTimeStamp()])
-//        print("send a like activity to notification")
-//
-//        sendLikeToFeedsDB( userID: currentUserID,likeNotificationID: notificationID!)
-//
-//    }
-    
-    //Edit by Tang Qian
-//    func sendLikeToFeedsDB(userID: String,likeNotificationID: String){
-//        Database.database().reference().child("feeds").child(userID).setValue([likeNotificationID: true])
-//
-//        Database.database().reference().child("followers").child(userID).observe(.childAdded) { (snapshot) in
-//            let followerID = snapshot.key
-//            Database.database().reference().child("feeds").child(followerID).setValue([likeNotificationID: true])
-//        }
-//
-//        print("send a like feed  to feeds")
-//    }
     
     
     @objc func commentImageViewClicked(){

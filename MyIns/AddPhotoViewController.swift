@@ -149,7 +149,7 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     //ADDED by @jingyuanb updated 20181017
     //send post to db: feeds
     func sendToFeedsDB(postID: String, userID: String){
-        Database.database().reference().child("feeds").child(userID).setValue([postID: true])
+        Database.database().reference().child("feeds").child(userID).child(postID).setValue(true)
         Database.database().reference().child("followers").child(userID).observe(.childAdded) { (snapshot) in
             let followerID = snapshot.key
             Database.database().reference().child("feeds").child(followerID).setValue([postID: true])
