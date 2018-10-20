@@ -19,8 +19,9 @@ class Notification{
         let notification = Notification()
         notification.id = notificationId
         notification.objectId = dict["objectId"] as? String
-        notification.objectId = dict["type"] as? String
+        notification.type = dict["type"] as? String
         notification.timestamp = dict["timestamp"] as? Int
+        notification.from = dict["from"] as! String
     
         return notification
     }

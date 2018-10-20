@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class FollowingActivityTableViewCell: UITableViewCell {
     
@@ -20,6 +21,28 @@ class FollowingActivityTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     
     @IBOutlet weak var photo: UIImageView!
+    
+    var notification: Notification?{
+        didSet{
+            
+            updateView()
+        }
+    }
+    var user: User?{
+        didSet{
+            setupUser()
+        }
+    }
+    
+    func updateView(){
+        
+        ActivityHelper.updateView(notification: notification!, timeLabel: timeLabel, descriptionLabel: descriptionLabel, photo: photo)
+    }
+
+    func setupUser(){
+        ActivityHelper.setupUser(user: user!, usernameLabel: usernameLabel, profileImage: profileImage)
+        
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

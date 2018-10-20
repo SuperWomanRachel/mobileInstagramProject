@@ -25,3 +25,8 @@ bug was: can only show one post and add only one post in feed.
 ## rachel fifth commit:  
 201810191743:  
 fixed bug of profile image url.  
+
+## rachel sixth commit:  
+201810192246:  
+add assets, fixed storyboard.  
+

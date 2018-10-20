@@ -11,10 +11,16 @@ import FirebaseDatabase
 
 class NotificationService{
     
+    static var REF_DB = Database.database().reference()
+    static var REF_NOTIFICATIONS = REF_DB.child("notifications")
+    static var REF_USER = REF_DB.child("users")
+    static var REF_ACTIVITYFEEDS = REF_DB.child("activityFeeds")
+    static var REF_POSTS = REF_DB.child("posts")
+    
+    
     static func uploadLikeActivity(currentUserID: String,postID: String){
-        let notificationRef = Database.database().reference().child("notifications")
-        let notificationID = notificationRef.childByAutoId().key
-        let newNotificationRef = notificationRef.child(notificationID!)
+        let notificationID = REF_NOTIFICATIONS.childByAutoId().key
+        let newNotificationRef = REF_NOTIFICATIONS.child(notificationID!)
         newNotificationRef.setValue(["from": currentUserID,"type":"like","objectId":postID,"timestamp": Config.getCurrentTimeStamp()])
         print("send a like activity to notification")
         
@@ -22,42 +28,56 @@ class NotificationService{
     }
     
     static func sendActivityToFeedsDB(userID: String,activityID: String){
-        Database.database().reference().child("activityFeeds").child(userID).setValue([activityID: true])
+        REF_DB.child("activityFeeds").child(userID).child(activityID).setValue(true)
         
-        Database.database().reference().child("followers").child(userID).observe(.childAdded) { (snapshot) in
+        REF_DB.child("followers").child(userID).observe(.childAdded) { (snapshot) in
             let followerID = snapshot.key
-            Database.database().reference().child("activityFeeds").child(followerID).setValue([activityID: true])
+            REF_DB.child("activityFeeds").child(followerID).child(activityID).setValue( true)
         }
         
         print("send a feed  to ActivityFeeds")
     }
     
-    static func loadLikedActivity(){
-        
-    }
     
     static func uploadFollowingActivity(){
         
     }
+
     
-    static func loadFollowingActivity(){
-        
-    }
-    
-    
-    static func uploadMyLikedActivity(){
-        
-    }
-    static func uploadMyFollowingActivity(){
-        
-    }
-    static func loadMyLikedActivity(){
-        
-    }
-    static func loadMyFollowingActivity(){
-        
+    static func observeNotification(withId id: String, completion:@escaping (Notification)->Void){
+        REF_ACTIVITYFEEDS.child(id).observe(.childAdded,with:{snapshot in
+            REF_NOTIFICATIONS.child(snapshot.key).observeSingleEvent(of: .value, with: { (noteSnapshot) in
+                if let dict = noteSnapshot.value as? [String:Any] {
+                    let newNotification = Notification.transformNotification(dict: dict, notificationId: noteSnapshot.key)
+                    completion(newNotification)
+                }
+
+            })
+            
+        })
     }
     
+    static func observeUser(withId id: String, completion:@escaping (User)->Void){
+        REF_USER.child(id).observeSingleEvent(of: .value, with: {
+            snapshot in
+            if let dict = snapshot.value as? [String: Any]{
+                let newUser = User.transformUser(dict: dict, uid: snapshot.key)
+                completion(newUser)
+            }
+        })
+        
+    }
+    
+    static func observePost(withId id: String, completion:@escaping (Post)->Void){
+        REF_POSTS.child(id).observeSingleEvent(of: .value, with: {
+            snapshot in
+            if let dict = snapshot.value as? [String: Any]{
+                let newPost = Post.transformPost(dict: dict, postID: snapshot.key)
+                completion(newPost)
+            }
+        })
+        
+    }
     
     
 }

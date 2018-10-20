@@ -11,7 +11,6 @@ import Foundation
 import FirebaseDatabase
 
 
-
 class User {
     var uid: String? = ""
     var username: String? = ""

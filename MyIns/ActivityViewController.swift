@@ -8,6 +8,7 @@
 
 import UIKit
 import PagingMenuController
+import FirebaseAuth
 
 class ActivityViewController: UIViewController {
     
@@ -53,11 +54,8 @@ class ActivityViewController: UIViewController {
             }
         }
         
-        
-        
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -67,7 +65,10 @@ class ActivityViewController: UIViewController {
         pagingMenuController.view.frame.size.height -= 64
         addChildViewController(pagingMenuController)
         view.addSubview(pagingMenuController.view)
+        
+        
     }
+    
     
 
     override func didReceiveMemoryWarning() {
