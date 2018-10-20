@@ -45,10 +45,11 @@ class ActivityHelper{
     
     static func getShowTime(timestamp: Int)-> String{
         var showTime = "3"
-        let timestampDate = Config.timeToDate(timeStamp: timestamp)
+        let timeInterval: TimeInterval = TimeInterval(timestamp)
+        let timestampDate = NSDate(timeIntervalSince1970: timeInterval)
         let now = Date()
         let components = Set<Calendar.Component>([.second, .minute, .hour , .day , .weekOfMonth])
-        let diff = Calendar.current.dateComponents(components,from:timestampDate, to: now)
+        let diff = Calendar.current.dateComponents(components,from:timestampDate as Date, to: now)
     
         if (diff.second! <= 0) {
             showTime = "Now"
