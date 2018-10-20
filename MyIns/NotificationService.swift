@@ -15,7 +15,7 @@ class NotificationService{
         let notificationID = Config.REF_NOTIFICATIONS.childByAutoId().key
         let newNotificationRef = Config.REF_NOTIFICATIONS.child(notificationID!)
         let postID = post.postID
-        newNotificationRef.setValue(["from": currentUserID,"type":type,"objectId":postID as Any,"timestamp": Config.getCurrentTimeStamp()])
+        newNotificationRef.setValue(["from": currentUserID,"type":type,"objectId":postID!,"timestamp": Config.getCurrentTimeStamp()])
         print("send a activity to notification")
         
         sendActivityToFeedsDB( userID: currentUserID,notificationID: notificationID!)
@@ -36,7 +36,7 @@ class NotificationService{
         let receiverID = post.uid
         Config.REF_YOUACTIVITYFEEDS.child(receiverID!).child(notificationID).setValue(true)
         print("check if the receiver's feed successfully updated&&&&&&&&&&&&&&&&&")
-        print(receiverID)
+        print(receiverID!)
         print(notificationID)
     }
     //TODO: the problem is : cannot get the notification Id when a user unlike/unfollow something

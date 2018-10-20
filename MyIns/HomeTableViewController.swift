@@ -10,6 +10,7 @@ import UIKit
 import FirebaseDatabase
 import GeoFire
 import FirebaseAuth
+import MJRefresh
 
 class HomeTableViewController: UITableViewController, CLLocationManagerDelegate {
     
@@ -19,6 +20,7 @@ class HomeTableViewController: UITableViewController, CLLocationManagerDelegate 
     @IBOutlet var homeTableView: UITableView!
     var posts = [Post]()
     var swipeImage = UIImage()
+    let header = MJRefreshHeader()
     //    var followings = [User]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +38,21 @@ class HomeTableViewController: UITableViewController, CLLocationManagerDelegate 
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         startUseLocation()
         getCurrentUserFeed()
+        header.setRefreshingTarget(self, refreshingAction: #selector(self.headerRefresh))
+        self.homeTableView.mj_header = header
         //        loadPosts()
         
+    }
+    
+    @objc func headerRefresh(){
+        reloadPosts()
+        self.homeTableView.reloadData()
+        self.homeTableView.mj_header.endRefreshing()
+    }
+    
+    func reloadPosts(){
+        posts.removeAll()
+        getCurrentUserFeed()
     }
     
     override func viewDidAppear(_ animated: Bool) {
