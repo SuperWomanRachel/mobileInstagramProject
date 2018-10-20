@@ -24,7 +24,6 @@ class YouActivityTableViewCell: UITableViewCell {
     
     var notification: Notification?{
         didSet{
-            
             updateView()
         }
     }

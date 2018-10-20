@@ -13,27 +13,14 @@ class ActivityHelper{
     
     
     static func updateView(notification: Notification,timeLabel: UILabel,descriptionLabel: UILabel,photo: UIImageView){
+        let postId = notification.objectId
         switch notification.type!{
         case "like":
             descriptionLabel.text = " liked "
-            let postId = notification.objectId
-            NotificationService.observePost(withId: postId!, completion: {
-                post in
-                if post.photoURL == nil {
-                    print("photo is nil")
-                    photo.image = UIImage(named: "profile_signUp")
-                }else{
-                    let photoImgurl = post.photoURL
-                    Alamofire.request(photoImgurl!).responseImage { (response) in
-                        if let image = response.result.value {
-                            photo.image = image
-                        }
-                    }
-                }
-                
-            })
+            showPostPhoto(withId: postId!, photo: photo)
         case "followed":
             descriptionLabel.text = " started following "
+            showPostPhoto(withId: postId!, photo: photo)
         default:
             print("defualt case")
         }
@@ -41,6 +28,24 @@ class ActivityHelper{
         let showTime = getShowTime(timestamp: timestamp!)
         timeLabel.text = showTime
         
+    }
+    
+    static func showPostPhoto(withId postId: String ,photo: UIImageView){
+        NotificationService.observePost(withId: postId, completion: {
+            post in
+            if post.photoURL == nil {
+                print("photo is nil")
+                photo.image = UIImage(named: "profile_signUp")
+            }else{
+                let photoImgurl = post.photoURL
+                Alamofire.request(photoImgurl!).responseImage { (response) in
+                    if let image = response.result.value {
+                        photo.image = image
+                    }
+                }
+            }
+            
+        })
     }
     
     static func getShowTime(timestamp: Int)-> String{
@@ -72,7 +77,6 @@ class ActivityHelper{
     }
     
     static func setupUser(user: User,usernameLabel: UILabel,profileImage:UIImageView){
-        
         usernameLabel.text = user.username
         if user.imageUserURL == nil {
             print("profile image url is nil")
