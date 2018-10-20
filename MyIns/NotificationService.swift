@@ -23,7 +23,7 @@ class NotificationService{
         let notificationID = REF_NOTIFICATIONS.childByAutoId().key
         let newNotificationRef = REF_NOTIFICATIONS.child(notificationID!)
         let postID = post.postID
-        newNotificationRef.setValue(["from": currentUserID,"type":type,"objectId":postID,"timestamp": Config.getCurrentTimeStamp()])
+        newNotificationRef.setValue(["from": currentUserID,"type":type,"objectId":postID!,"timestamp": Config.getCurrentTimeStamp()])
         print("send a activity to notification")
         
         sendActivityToFeedsDB( userID: currentUserID,notificationID: notificationID!)
@@ -46,7 +46,7 @@ class NotificationService{
         let receiverID = post.uid
         REF_YOUACTIVITYFEEDS.child(receiverID!).child(notificationID).setValue(true)
         print("check if the receiver's feed successfully updated&&&&&&&&&&&&&&&&&")
-        print(receiverID)
+        print(receiverID!)
         print(notificationID)
     }
     
