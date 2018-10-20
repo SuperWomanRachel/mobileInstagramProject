@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import MJRefresh
 
 class YouActivityViewController: UIViewController {
 
@@ -16,12 +17,31 @@ class YouActivityViewController: UIViewController {
     
     var notifications = [Notification]()
     var users = [User]()
+    let header = MJRefreshHeader()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         print("load YOU view")
         
+        loadActivity()
+        
+        
+        header.setRefreshingTarget(self, refreshingAction: #selector(self.headerRefresh))
+        self.youTableView.mj_header = header
+    }
+    
+    @objc func headerRefresh(){
+        print("header refresh")
+        reloadActivity()
+        self.youTableView.reloadData()
+        self.youTableView.mj_header.endRefreshing()
+    }
+    
+    func reloadActivity(){
+        notifications.removeAll()
+        users.removeAll()
+        print("remove all users and notifications")
         loadActivity()
     }
     

@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import MJRefresh
 
 class FollowingActivityViewController: UIViewController {
 
@@ -15,14 +16,34 @@ class FollowingActivityViewController: UIViewController {
     @IBOutlet weak var followingTableView: UITableView!
     var notifications = [Notification]()
     var users = [User]()
+    let header = MJRefreshHeader()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("load following view")
 
         loadActivity()
+        
+        
+        header.setRefreshingTarget(self, refreshingAction: #selector(self.headerRefresh))
+        self.followingTableView.mj_header = header
+        
     }
     
+    @objc func headerRefresh(){
+        print("header refresh")
+        reloadActivity()
+        self.followingTableView.reloadData()
+        self.followingTableView.mj_header.endRefreshing()
+    }
+    
+
+    func reloadActivity(){
+        notifications.removeAll()
+        users.removeAll()
+        print("remove all users and notifications")
+        loadActivity()
+    }
     
     func loadActivity(){
         

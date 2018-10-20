@@ -70,6 +70,7 @@ PODS:
   - GTMSessionFetcher/Core (1.2.0)
   - IQKeyboardManagerSwift (6.1.1)
   - leveldb-library (1.20)
+  - MJRefresh (3.1.15.7)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -85,6 +86,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - GeoFire (from `https://github.com/firebase/geofire-objc.git`)
   - IQKeyboardManagerSwift
+  - MJRefresh
   - PagingMenuController
 
 SPEC REPOS:
@@ -104,6 +106,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - IQKeyboardManagerSwift
     - leveldb-library
+    - MJRefresh
     - nanopb
     - PagingMenuController
 
@@ -133,9 +136,10 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   PagingMenuController: 6176618987bb170096664f2da097313e45ed9c31
 
-PODFILE CHECKSUM: 678ccbef3b845047a2e04628bb478d36616873be
+PODFILE CHECKSUM: 8313c5a758a86751227b7a59e0f31afcc227bd98
 
 COCOAPODS: 1.5.3
