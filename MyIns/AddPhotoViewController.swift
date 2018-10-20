@@ -20,13 +20,17 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     
     //ADDED by @jingyuanb
     var locationManager = CLLocationManager() //location
-//    var myLocation: CLLocation?
+    //    var myLocation: CLLocation?
     var myLocationCoor: CLLocationCoordinate2D?
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var libraryButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var filterButton: UIBarButtonItem!
+    @IBOutlet weak var contrastButton: UIBarButtonItem!
+    @IBOutlet weak var brightnessButton: UIBarButtonItem!
+    
+    
     //ADDED by @jingyuanb
     @IBOutlet weak var sharePostBtn: UIButton!
     @IBOutlet weak var captionTextField: UITextView!
@@ -34,20 +38,25 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     let imagePicker = UIImagePickerController()
     var originalImage = UIImage()
     
-//    let postID = "-LP0YpKv4qqs8NamN0oM"
-//    let currentUserID = "9IOntcgg8ne8kjwUAsrXDUfJGgv1"
-//    let photoURL = "https://firebasestorage.googleapis.com/v0/b/mobileproject-8906e.appspot.com/o/postPhotos%2FA78C7BF4-80DF-456D-95C4-3C5CF7900D8F?alt=media&token=e787dd80-729f-45a9-ad93-8086cef69f8a"
-//
+    //    let postID = "-LP0YpKv4qqs8NamN0oM"
+    //    let currentUserID = "9IOntcgg8ne8kjwUAsrXDUfJGgv1"
+    //    let photoURL = "https://firebasestorage.googleapis.com/v0/b/mobileproject-8906e.appspot.com/o/postPhotos%2FA78C7BF4-80DF-456D-95C4-3C5CF7900D8F?alt=media&token=e787dd80-729f-45a9-ad93-8086cef69f8a"
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
+        self.contrastButton.isEnabled = false
+        self.brightnessButton.isEnabled = false
+        self.filterButton.isEnabled = false
+        
         showImagePickerForSourceType(.photoLibrary)
+        
         //ADDED by @jingyuanb
         startUseLocation()
         self.captionTextField.toolbarPlaceholder = "Caption here"
         
     }
-    
+      
     //ADDED by @jingyuanb
     fileprivate func startUseLocation() {
         locationManager.requestWhenInUseAuthorization()
@@ -88,7 +97,7 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
                     self.sendDataToDB(photoURL: (url?.absoluteString)!)
                 })
             }
-
+            
         }
         handleSharePostValid()
     }
@@ -102,11 +111,11 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
         if imageView != nil && imageView.image != nil {
             sharePostBtn.isEnabled = true
             sharePostBtn.setTitleColor(UIColor.blue, for: UIControlState.normal)
-//            self.sharePostBtn.backgroundColor=UIColor(red: 41/255, green: 109/255, blue: 255/255, alpha: 1)
+            //            self.sharePostBtn.backgroundColor=UIColor(red: 41/255, green: 109/255, blue: 255/255, alpha: 1)
         }else {
             sharePostBtn.isEnabled = false
             sharePostBtn.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
-//            self.sharePostBtn.backgroundColor=UIColor(red: 170/255, green: 199/255, blue: 255/255, alpha: 1)
+            //            self.sharePostBtn.backgroundColor=UIColor(red: 170/255, green: 199/255, blue: 255/255, alpha: 1)
         }
     }
     //ADD THIS by @jingyuanb
@@ -125,7 +134,7 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
                 ProgressHUD.showError(error?.localizedDescription)
                 return
             }
-
+            
             self.sendToMyPostsDB(postID: postID!, userID: currentUserID)
             self.sendToFeedsDB(postID: postID!, userID: currentUserID)
             ProgressHUD.showSuccess("Success")
@@ -133,7 +142,7 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
             self.captionTextField.text = ""
             self.handleSharePostValid()
             self.tabBarController?.selectedIndex = 0
-            }
+        }
         
     }
     //ADDED by @jingyuanb
@@ -163,8 +172,8 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     //ADDED by @jingyuanb
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first{
-//            print(location.coordinate) //print out the coordinates of your location
-//            self.myLocation = location
+            //            print(location.coordinate) //print out the coordinates of your location
+            //            self.myLocation = location
             self.myLocationCoor = location.coordinate
             
         }
@@ -288,12 +297,16 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func clickClearButton(_ sender: UIBarButtonItem) {
         
         self.imageView.image = nil
-
+        
+        self.contrastButton.isEnabled = false
+        self.brightnessButton.isEnabled = false
+        self.filterButton.isEnabled = false
+        
         //ADD THIS by @jingyuanb
         self.captionTextField.text = ""
         self.captionTextField.toolbarPlaceholder = "Caption here"
         self.handleSharePostValid()
-
+        
     }
     
     @IBAction func clickCameraButton(_ sender: UIBarButtonItem) {
@@ -306,7 +319,24 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
             self.imagePicker.modalPresentationStyle = .currentContext
             self.imagePicker.sourceType = sourceType
             if sourceType == .camera{
-                self.imagePicker.cameraFlashMode = .on
+                self.imagePicker.cameraFlashMode = .off
+                
+                let screenWidth = UIScreen.main.bounds.size.width
+                // at current screenwidth, 'previewHeight' is the height necessary to maintain the aspect ratio
+                let previewHeight = screenWidth + (screenWidth / 3)
+                let screenHeight = UIScreen.main.bounds.size.height
+                let totalBlack = screenHeight - previewHeight
+                let heightOfBlackTopAndBottom = totalBlack / 2;
+                
+                
+                let frame = CGRect(x: 0, y: heightOfBlackTopAndBottom/2+2, width: self.imagePicker.view.frame.size.width, height: previewHeight)
+                let overlayView = CustomGridViewController(frame: frame)
+                overlayView.isUserInteractionEnabled = true
+                self.imagePicker.cameraOverlayView = overlayView
+                
+                self.imagePicker.cameraViewTransform = CGAffineTransform(translationX: 0.0, y: heightOfBlackTopAndBottom/2)
+                
+                
             }
             
             self.imagePicker.delegate = self
@@ -329,7 +359,11 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
                 self.imageView.image = image
                 self.imageView.contentMode = .scaleAspectFit
                 
-               //ADD THIS by @jingyuanb
+                self.contrastButton.isEnabled = true
+                self.brightnessButton.isEnabled = true
+                self.filterButton.isEnabled = true
+                
+                //ADD THIS by @jingyuanb
                 self.handleSharePostValid()
             }
         }
@@ -381,7 +415,7 @@ class PopoverViewController: UITableViewController {
             self.delegate?.messageData(type: "filter", data: sender.currentTitle! as AnyObject)
         }
     }
-
+    
     
 }
 

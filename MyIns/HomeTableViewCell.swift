@@ -218,6 +218,14 @@ class HomeTableViewCell: UITableViewCell {
 
     }
 
+    
+    @IBAction func clickToShare(_ sender: UIButton) {
+        print("share~")
+        if let image = self.photo.image {
+            homeTableView?.swipeImage = image
+        }
+        
+    }
 
 
 }
