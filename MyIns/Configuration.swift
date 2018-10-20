@@ -7,12 +7,20 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
 class Config{
     
     
     static var STORAGE_ROOT_REF = "gs://mobileproject-8906e.appspot.com"
     //    static var STORAGE_ROOT_REF = "gs://myins-52dda.appspot.com"
+    
+    static var REF_DB = Database.database().reference()
+    static var REF_NOTIFICATIONS = REF_DB.child("notifications")
+    static var REF_USER = REF_DB.child("users")
+    static var REF_ACTIVITYFEEDS = REF_DB.child("activityFeeds")
+    static var REF_POSTS = REF_DB.child("posts")
+    static var REF_YOUACTIVITYFEEDS = REF_DB.child("youActivityFeeds")
     
     // added by @jingyuanb
     static func timestampToDate(timeStamp: Int) -> String {

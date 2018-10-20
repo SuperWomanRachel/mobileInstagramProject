@@ -12,12 +12,9 @@ class SignUpViewController: UIViewController {
     
     
     @IBOutlet weak var usernameTextField: UITextField!
-    
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
-    
     @IBOutlet weak var signUpBtn: UIButton!
-    
     @IBOutlet weak var profileImage: UIImageView!
     
     var selectedImage : UIImage?
@@ -28,17 +25,14 @@ class SignUpViewController: UIViewController {
         profileImage.layer.cornerRadius = 43
         profileImage.clipsToBounds = true
         
-        
         let tabGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleSelectProfileImageView))
         profileImage.addGestureRecognizer(tabGesture)
         profileImage.isUserInteractionEnabled = true
-        
         signUpBtn.isEnabled = false
         handleTextField()
     }
     
     @objc func handleSelectProfileImageView(){
-        print("Image View Tapped!!!")
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         present(pickerController, animated: true, completion: nil)
@@ -67,24 +61,17 @@ class SignUpViewController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touched began keyboard test")
         view.endEditing(true)
     }
     
     @IBAction func signUpBtn_Touched(_ sender: Any) {
         ProgressHUD.show("Waiting ...", interaction: false)
         if let profileImg = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImg,0.1){
-            print("button clicked")
             AuthService.signUp(username: self.usernameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!,imageData: imageData, onSuccess: {
                 ProgressHUD.showSuccess("Success")
-                print("on success, sigh UP BTN TOuch")
                 self.performSegue(withIdentifier: "signUpToTabbar", sender: nil)
-                
-                
             }) { (errorMsg) in
-                print("show errorMsg")
                 ProgressHUD.showError(errorMsg!)
-                print("sign up error in her")
                 print(errorMsg!)
             }
         }
@@ -101,12 +88,10 @@ extension SignUpViewController: UIImagePickerControllerDelegate,UINavigationCont
     
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        print("Did pick somthing")
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
             selectedImage = image
             profileImage.image = image
         }
-        print("######")
         dismiss(animated: true, completion: nil)
     }
     

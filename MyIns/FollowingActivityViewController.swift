@@ -20,18 +20,12 @@ class FollowingActivityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("load following view")
-
         loadActivity()
-        
-        
         header.setRefreshingTarget(self, refreshingAction: #selector(self.headerRefresh))
         self.followingTableView.mj_header = header
-        
     }
     
     @objc func headerRefresh(){
-        print("header refresh")
         reloadActivity()
         self.followingTableView.reloadData()
         self.followingTableView.mj_header.endRefreshing()
@@ -41,12 +35,10 @@ class FollowingActivityViewController: UIViewController {
     func reloadActivity(){
         notifications.removeAll()
         users.removeAll()
-        print("remove all users and notifications")
         loadActivity()
     }
     
     func loadActivity(){
-        
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
@@ -78,7 +70,6 @@ class FollowingActivityViewController: UIViewController {
 
 extension FollowingActivityViewController: UITableViewDataSource{
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notifications.count
     }
@@ -87,10 +78,8 @@ extension FollowingActivityViewController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "FollowingActivityTableViewCell", for: indexPath) as! FollowingActivityTableViewCell
         let notification = notifications[indexPath.row]
         let user = users[indexPath.row]
-        
         cell.notification = notification
         cell.user = user
-   
         return cell
     }
     

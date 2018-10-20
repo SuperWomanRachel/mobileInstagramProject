@@ -13,8 +13,6 @@ import FirebaseAuth
 class ActivityViewController: UIViewController {
     
     private struct PagingMenuOptions: PagingMenuControllerCustomizable{
-        
-        
         private let followingActivityViewController = UIStoryboard(name: "Activity", bundle: nil).instantiateViewController(withIdentifier: "FollowingActivityViewController") as! FollowingActivityViewController
         
         private let youActivityViewController = UIStoryboard(name: "Activity", bundle: nil).instantiateViewController(withIdentifier: "YouActivityViewController") as! YouActivityViewController
@@ -37,9 +35,7 @@ class ActivityViewController: UIViewController {
                 return [MenuItem1(),MenuItem2()]
             }
         }
-        
-        
-        
+    
         fileprivate struct MenuItem1: MenuItemViewCustomizable{
             var displayMode: MenuItemDisplayMode{
                 return .text(title: MenuItemText(text: "FOLLOWING"))
@@ -58,7 +54,6 @@ class ActivityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         let options = PagingMenuOptions()
         let pagingMenuController = PagingMenuController(options: options)
         pagingMenuController.view.frame.origin.y += 100
@@ -66,15 +61,11 @@ class ActivityViewController: UIViewController {
         addChildViewController(pagingMenuController)
         view.addSubview(pagingMenuController.view)
         
-        
     }
     
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
 
 }
 
