@@ -40,7 +40,6 @@ class HomeTableViewCell: UITableViewCell {
     //update cell
     func updateView(){
         showUser(uid: (post?.uid)!)
-
         self.caption.text = post?.caption
         let photoImgurl = post?.photoURL
         Alamofire.request(photoImgurl!).responseImage { (response) in
@@ -48,13 +47,19 @@ class HomeTableViewCell: UITableViewCell {
                 self.photo.image = image
             }
         }
-
-        loadLikes()
+        loadLikes(post: post!)
+        Database.database().reference().child("posts").child((post?.postID)!).observe(.childChanged) { (snapshot) in
+            if let likes = snapshot.value as? [String: Any]{
+                let count = likes.count
+                self.updateLikeCount(post: self.post!, count: count)
+            }
+        }
+        
     }
     
-    func loadLikes() {
+    func loadLikes(post: Post) {
         //load like
-        Database.database().reference().child("posts").child((post?.postID)!).observeSingleEvent(of:.value) {(snapshot) in
+        Database.database().reference().child("posts").child((post.postID)!).observeSingleEvent(of:.value) {(snapshot) in
             if let dict = snapshot.value as? [String: Any] {
                 let post = Post.transformPost(dict: dict, postID: snapshot.key)
                 let isLike = post.isLike!
@@ -63,29 +68,65 @@ class HomeTableViewCell: UITableViewCell {
                 }else{
                     self.likeBtn.image = UIImage(named: "like")
                 }
-                self.showUserListLabel.text = "be the first one like this post!"
-                self.viewAllLikesBtn.isEnabled = false
-                self.viewAllLikesBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
-                guard let likes = post.likes else{ return }
-                if likes.count == 0 {
-                    self.viewAllLikesBtn.isEnabled = false
-                    self.viewAllLikesBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
-                    self.showUserListLabel.text = "be the first one like this post!"
-                }else{
-                    self.viewAllLikesBtn.isEnabled = true
-                    self.viewAllLikesBtn.setTitleColor(UIColor.blue, for: UIControlState.normal)
-                    self.showUserListLabel.text = ""
-                    for key in likes.keys {
-                        self.fetchUsers(uid: key, completion: { (user) in
-                            self.showUserListLabel.text?.append(user.username!)
-                            self.showUserListLabel.text?.append(",")
-                        })
-                    }
-                    self.showUserListLabel.text?.append("like(s) this post:\n  ")
+                if post.likeCount != nil {
+                    let count = post.likeCount!
+                    self.updateLikeCount(post: post,count: count)
                 }
             }
         }
     }
+    
+    func updateLikeCount(post: Post, count: Int){
+        if post.likeCount != 0  {
+            self.viewAllLikesBtn.isEnabled = true
+            self.viewAllLikesBtn.setTitleColor(UIColor.blue, for: UIControlState.normal)
+            self.showUserListLabel.text = "\(count) like(s)"
+        }else{
+            self.viewAllLikesBtn.isEnabled = false
+            self.viewAllLikesBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
+            self.showUserListLabel.text = "be the first one like this post!"
+        }
+    }
+    
+    
+    func incrementLikes(forRef ref: DatabaseReference){
+        ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
+            if var post = currentData.value as? [String : AnyObject], let uid = Auth.auth().currentUser?.uid {
+                //                print("value 1 : \(String(describing: currentData.value))")
+                var likes: Dictionary<String, Bool>
+                likes = post["likes"] as? [String : Bool] ?? [:]
+                var likeCount = post["likeCount"] as? Int ?? 0
+                if let _ = likes[uid] {
+                    // Unstar the post and remove self from stars
+                    likeCount -= 1
+                    likes.removeValue(forKey: uid)
+                    
+                } else {
+                    // Star the post and add self to stars
+                    likeCount += 1
+                    likes[uid] = true
+                }
+                post["likeCount"] = likeCount as AnyObject?
+                post["likes"] = likes as AnyObject?
+                
+                // Set value and report transaction success
+                currentData.value = post
+                
+                return TransactionResult.success(withValue: currentData)
+            }
+            return TransactionResult.success(withValue: currentData)
+        }) { (error, committed, snapshot) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            //            print("value 2 : \(String(describing: snapshot?.value))")
+            if let dict = snapshot?.value as? [String: Any]{
+                let post = Post.transformPost(dict: dict, postID: (snapshot?.key)!)
+                self.loadLikes(post: post)
+            }
+        }
+    }
+    
     //update user
     func showUser(uid: String){
         _ = Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -141,20 +182,25 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     @objc func LikeImageViewClicked(){
-//        print("like btn clicked")
+        //        print("like btn clicked")
         let currentUserID = Auth.auth().currentUser?.uid
-        let likesRef = Database.database().reference().child("posts").child((post?.postID)!).child("likes")
+        var postRef = Database.database().reference().child("posts").child((post?.postID)!)
+        //        let likesRef = postRef.child("likes")
         if self.likeBtn.image == UIImage(named: "like") {
-            likesRef.child(currentUserID!).setValue(true)
-            NotificationService.uploadActivity(currentUserID: currentUserID!, post: post!,type: "like")
+            //            likesRef.child(currentUserID!).setValue(true)
+            
+            NotificationService.uploadLikeActivity(currentUserID: currentUserID!, postID: (post?.postID)!)
             
             self.likeBtn.image = UIImage(named: "liked")
         }else{
-            likesRef.child(currentUserID!).removeValue()
+            //            likesRef.child(currentUserID!).removeValue()
             self.likeBtn.image = UIImage(named: "like")
         }
-        loadLikes()
-
+        postRef = Database.database().reference().child("posts").child((post?.postID)!)
+        incrementLikes(forRef: postRef)
+        
+        
+        
     }
 
     

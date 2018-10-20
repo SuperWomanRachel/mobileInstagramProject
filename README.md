@@ -30,3 +30,6 @@ fixed bug of profile image url.
 201810192246:  
 add assets, fixed storyboard.  
 
+## rachel seventh commit:  
+201810201250:  
+add likeCount in HomeTableViewCell.swift and Post.swift  

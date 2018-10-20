@@ -22,6 +22,7 @@ class Post {
     var likes: Dictionary<String, Any>?
     var latitude: Double?
     var longitude: Double?
+    var likeCount: Int? = 0
 
     var isLike: Bool?
 
@@ -35,6 +36,9 @@ class Post {
         post.timestamp = dict["timestamp"] as? Int
         post.postID = postID
         post.likes = dict["likes"] as? Dictionary<String, Any>
+        post.likeCount = dict["likeCount"] as? Int
+        
+        print(post.likeCount!)
 
         if let currentUserId = Auth.auth().currentUser?.uid {
             if post.likes != nil {

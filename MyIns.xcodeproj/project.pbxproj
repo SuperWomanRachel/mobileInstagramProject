@@ -33,7 +33,6 @@
 		FE4ECC9B2165DB6300CE4542 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4ECC872165DB6200CE4542 /* Comment.swift */; };
 		FE4ECC9C2165DB6300CE4542 /* likesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4ECC882165DB6200CE4542 /* likesTableViewCell.swift */; };
 		FE4ECC9D2165DB6300CE4542 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4ECC892165DB6300CE4542 /* Configuration.swift */; };
-		FE4ECC9E2165DB6300CE4542 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE4ECC8A2165DB6300CE4542 /* Info.plist */; };
 		FE4ECCA32165DD1C00CE4542 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE4ECCA22165DD1C00CE4542 /* Assets.xcassets */; };
 		FE4ECCA82165DD8500CE4542 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE4ECCA52165DD8400CE4542 /* LaunchScreen.storyboard */; };
 		FE4ECCAB2165DDBD00CE4542 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE4ECCAA2165DDBD00CE4542 /* Main.storyboard */; };
@@ -364,7 +363,6 @@
 				FEF9642B216227560003F861 /* ProgressHUD.bundle in Resources */,
 				1169A2B021776EEA0049AB15 /* Activity.storyboard in Resources */,
 				FE4ECCAB2165DDBD00CE4542 /* Main.storyboard in Resources */,
-				FE4ECC9E2165DB6300CE4542 /* Info.plist in Resources */,
 				FE4ECC932165DB6300CE4542 /* Start.storyboard in Resources */,
 				FE4ECCA32165DD1C00CE4542 /* Assets.xcassets in Resources */,
 				FE4ECCB12165F31C00CE4542 /* GoogleService-Info.plist in Resources */,
