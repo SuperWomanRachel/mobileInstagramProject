@@ -38,7 +38,7 @@ class Post {
         post.likes = dict["likes"] as? Dictionary<String, Any>
         post.likeCount = dict["likeCount"] as? Int
         
-        print(post.likeCount!)
+//        print(post.likeCount!)
 
         if let currentUserId = Auth.auth().currentUser?.uid {
             if post.likes != nil {
