@@ -7,16 +7,50 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class YouActivityViewController: UIViewController {
 
     
     @IBOutlet weak var youTableView: UITableView!
     
+    var notifications = [Notification]()
+    var users = [User]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        print("load YOU view")
+        
+        loadActivity()
+    }
+    
+    func loadActivity(){
+        
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        
+        NotificationService.observeMyNotification(withId: currentUser.uid,completion: {
+            notification in
+            guard let uid = notification.from else{
+                return
+            }
+            self.fetchUser(uid: uid, completion: {
+                self.notifications.insert(notification, at: 0)
+                self.youTableView.reloadData()
+            })
+        })
+        
+    }
+    
+    func fetchUser(uid: String, completion: @escaping ()->Void){
+        NotificationService.observeUser(withId: uid, completion: {
+            user in
+            self.users.insert(user, at: 0)
+            completion()
+        })
+        
     }
     
 
@@ -25,19 +59,19 @@ class YouActivityViewController: UIViewController {
 
 extension YouActivityViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return notifications.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "YouActivityTableViewCell", for: indexPath) as! YouActivityTableViewCell
         
-        cell.usernameLabel.text = "You"
-        let image = UIImage(named: "profile_signUp")
-        cell.profileImage.image = image
-        //image = UIImage(named: "profile_signUp")
-        //cell.profileImage = UIImageView(image: image)
+        let notification = notifications[indexPath.row]
+        let user = users[indexPath.row]
         
+        cell.notification = notification
+        cell.user = user
         return cell
+       
     }
     
     
