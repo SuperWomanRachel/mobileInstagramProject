@@ -112,7 +112,7 @@ class HomeTableViewCell: UITableViewCell {
 
                     //likes[uid] = true
 
-                    NotificationService.uploadActivity(currentUserID: uid, post: thePost)
+                    NotificationService.uploadActivity(currentUserID: uid, post: thePost,type: "like")
 
                     
                 }
@@ -203,7 +203,6 @@ class HomeTableViewCell: UITableViewCell {
         if self.likeBtn.image == UIImage(named: "like") {
             //            likesRef.child(currentUserID!).setValue(true)
             
-            NotificationService.uploadActivity(currentUserID: currentUserID!, post: post!,type: "like")
             
             self.likeBtn.image = UIImage(named: "liked")
         }else{

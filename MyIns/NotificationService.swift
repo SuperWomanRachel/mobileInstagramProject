@@ -11,7 +11,7 @@ import FirebaseDatabase
 
 class NotificationService{
     
-    static func uploadActivity(currentUserID: String,post: Post){
+    static func uploadActivity(currentUserID: String,post: Post,type: String){
         // activityID could be the postID if like event happen, or the userID if follow event happen
         let notificationID = Config.REF_NOTIFICATIONS.childByAutoId().key
         let newNotificationRef = Config.REF_NOTIFICATIONS.child(notificationID!)
@@ -49,6 +49,7 @@ class NotificationService{
     static func removeActivity(userID: String,post: Post,noteID: String){
         print("ignoreActivity")
         print("noteID : " + "\(noteID)")
+        Config.REF_NOTIFICATIONS.child(noteID).removeValue()
         removeActivityInFeedsDB(userID: userID, notificationID: noteID)
         removeYouActivityInFeedsDB(post: post, notificationID: noteID)
 
