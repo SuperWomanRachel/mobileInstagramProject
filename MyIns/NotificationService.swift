@@ -23,29 +23,9 @@ class NotificationService{
         sendYouActivityToFeedsDB(post: post,notificationID: notificationID!)
     }
     
-    static func uploadFollowActivity(currentUserID: String,newFollowUserID: String,type: String){
-        let notificationID = Config.REF_NOTIFICATIONS.childByAutoId().key
-        let newNotificationRef = Config.REF_NOTIFICATIONS.child(notificationID!)
-        
-    }
     
-    static func sendFollowActivityToFeedsDB(userID: String,notificationID: String){
-        print("newsendActivityToFeedsDB")
-        
-        Config.REF_DB.child("followers").child(userID).observe(.childAdded) { (snapshot) in
-            let followerID = snapshot.key
-            Config.REF_DB.child("activityFeeds").child(followerID).child(notificationID).setValue( true)
-        }
-        
-        // like event need to set the noteID to the post in posts node in DB
-        
-        
-        
-        
-    }
     
     static func sendActivityToFeedsDB(userID: String,notificationID: String,postID: String){
-        print("newsendActivityToFeedsDB")
         
         Config.REF_DB.child("followers").child(userID).observe(.childAdded) { (snapshot) in
             let followerID = snapshot.key
@@ -67,6 +47,37 @@ class NotificationService{
 
     }
     
+    static func uploadFollowActivity(currentUserID: String,newFollowUserID: String,type: String){
+        print("uploadFollowActivity")
+        
+        let notificationID = Config.REF_NOTIFICATIONS.childByAutoId().key
+        let newNotificationRef = Config.REF_NOTIFICATIONS.child(notificationID!).setValue(["from": currentUserID,"type":type,"objectId":newFollowUserID,"timestamp": Config.getCurrentTimeStamp()])
+        print("send a follow activity to notification")
+        
+        sendFollowActivityToFeedsDB( currentUserID: currentUserID,newFollowUserID: newFollowUserID, notificationID: notificationID!)
+        sendFollowYouActivityToFeedsDB(newFollowUserID: newFollowUserID,notificationID: notificationID!)
+        
+    }
+    
+    static func sendFollowActivityToFeedsDB(currentUserID: String,newFollowUserID: String,notificationID: String){
+        print("newsendActivityToFeedsDB")
+        
+        Config.REF_DB.child("followers").child(currentUserID).observe(.childAdded) { (snapshot) in
+            let followerID = snapshot.key
+            Config.REF_DB.child("activityFeeds").child(followerID).child(notificationID).setValue( true)
+        }
+        Config.REF_FOLLOWERS.child(newFollowUserID).child(currentUserID).setValue(notificationID)
+        print("change the value of the B's follower in followers to notificationID ,uID is "+"\(currentUserID)"+",****noteID is\(notificationID)")
+        
+    }
+    
+    static func sendFollowYouActivityToFeedsDB(newFollowUserID: String,notificationID: String){
+        Config.REF_YOUACTIVITYFEEDS.child(newFollowUserID).child(notificationID).setValue(true)
+        
+    }
+    
+    
+    
     static func removeActivity(userID: String,post: Post,noteID: String){
         print("ignoreActivity")
         print("noteID : " + "\(noteID)")
@@ -75,6 +86,8 @@ class NotificationService{
         removeYouActivityInFeedsDB(post: post, notificationID: noteID)
 
     }
+    
+    
     
     static func removeActivityInFeedsDB(userID: String,notificationID: String){
         
@@ -88,6 +101,26 @@ class NotificationService{
         let receiverID = post.uid
         Config.REF_YOUACTIVITYFEEDS.child(receiverID!).child(notificationID).removeValue()
 
+    }
+    
+    static func removeFollowActivity(currentUserID: String,newFollowUserID: String,noteID: String){
+        Config.REF_NOTIFICATIONS.child(noteID).removeValue()
+        Config.REF_FOLLOWERS.child(newFollowUserID).child(currentUserID).removeValue()
+        removeFollowActivityInFeedsDB(currentUserID: currentUserID, notificationID: noteID)
+        removeFollowYouActivityInFeedsDB(newFollowUserID: newFollowUserID, notificationID: noteID)
+        
+    }
+    
+    static func removeFollowActivityInFeedsDB(currentUserID: String,notificationID: String){
+        Config.REF_DB.child("followers").child(currentUserID).observe(.childAdded) { (snapshot) in
+            let followerID = snapshot.key
+            Config.REF_DB.child("activityFeeds").child(followerID).child(notificationID).removeValue()
+        }
+    }
+    
+    static func removeFollowYouActivityInFeedsDB(newFollowUserID: String,notificationID: String){
+    Config.REF_YOUACTIVITYFEEDS.child(newFollowUserID).child(notificationID).removeValue()
+        
     }
     
     

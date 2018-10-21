@@ -12,14 +12,14 @@ import Alamofire
 class ActivityHelper{
     
     static func updateView(notification: Notification,timeLabel: UILabel,descriptionLabel: UILabel,photo: UIImageView){
-        let postId = notification.objectId
+        let objectId = notification.objectId
         switch notification.type!{
         case "like":
             descriptionLabel.text = " liked "
-            showPostPhoto(withId: postId!, photo: photo)
-        case "followed":
+            showPostPhoto(withId: objectId!, photo: photo)
+        case "follow":
             descriptionLabel.text = " started following "
-            showPostPhoto(withId: postId!, photo: photo)
+            showFollowingPhoto(withId: objectId!, photo: photo)
         default:
             print("defualt case")
         }
@@ -37,6 +37,24 @@ class ActivityHelper{
                 photo.image = UIImage(named: "profile_signUp")
             }else{
                 let photoImgurl = post.photoURL
+                Alamofire.request(photoImgurl!).responseImage { (response) in
+                    if let image = response.result.value {
+                        photo.image = image
+                    }
+                }
+            }
+            
+        })
+    }
+    
+    static func showFollowingPhoto(withId userId: String ,photo: UIImageView){
+        NotificationService.observeUser(withId: userId, completion: {
+            user in
+            if user.imageUserURL == nil {
+                print("photo is nil")
+                photo.image = UIImage(named: "profile_signUp")
+            }else{
+                let photoImgurl = user.imageUserURL
                 Alamofire.request(photoImgurl!).responseImage { (response) in
                     if let image = response.result.value {
                         photo.image = image

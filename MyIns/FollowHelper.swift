@@ -22,8 +22,10 @@ class FollowHelper{
                 }
             }
         })
-        REF_FOLLOWERS.child(id).child(Helper.user.CURRENT_USER!.uid).setValue(true)
+        // if A follows B ,id is B's, Helper.user.CURRENT_USER!.uid is A's
+        //REF_FOLLOWERS.child(id).child(Helper.user.CURRENT_USER!.uid).setValue(true)
         REF_FOLLOWING.child(Helper.user.CURRENT_USER!.uid).child(id).setValue(true)
+        NotificationService.uploadFollowActivity(currentUserID: Helper.user.CURRENT_USER!.uid, newFollowUserID: id, type: "follow")
     }
     
     func unfollowAction(withId id:String){
@@ -36,8 +38,21 @@ class FollowHelper{
                 }
             }
         })
-        REF_FOLLOWERS.child(id).child(Helper.user.CURRENT_USER!.uid).setValue(NSNull())
-        REF_FOLLOWING.child(Helper.user.CURRENT_USER!.uid).child(id).setValue(NSNull())
+        //REF_FOLLOWERS.child(id).child(Helper.user.CURRENT_USER!.uid).setValue(NSNull())
+        //get the noteID based on
+        print("************")
+        print("newFollow ID should be 9I(user1)" + " \(id) " + "id should be A9(t1) " + "\(Helper.user.CURRENT_USER!.uid)")
+        Config.REF_FOLLOWERS.child(id).observeSingleEvent(of: .value, with: {
+            snapshot in
+            let dict = snapshot.value as? [String:Any]
+            let noteID = dict![Helper.user.CURRENT_USER!.uid]
+            print(noteID)
+            NotificationService.removeFollowActivity(currentUserID: Helper.user.CURRENT_USER!.uid, newFollowUserID: id, noteID: noteID as! String)
+            print("try to remove note with ID: " + "\(noteID)")
+            self.REF_FOLLOWING.child(Helper.user.CURRENT_USER!.uid).child(id).setValue(NSNull())
+            
+        })
+        
     }
     
     func ifFollowing(userId: String, completed: @escaping (Bool) -> Void){
