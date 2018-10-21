@@ -191,11 +191,6 @@
                                 <action selector="LogoutBtnClicked:" destination="uvx-He-Ofr" id="u9F-Ss-9mu"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="uCN-mS-f15">
-                            <connections>
-                                <segue destination="5jU-mN-zne" kind="show" id="e8e-jc-96q"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="dob-5F-zTA" id="3vX-f3-hYW"/>

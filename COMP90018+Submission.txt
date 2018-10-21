@@ -1,0 +1,20 @@
+################################################################################                     
+                    COMP90018 Programming Project Submission
+################################################################################
+
+Group No: #17
+
+Group Members:
+
+1: [jingyuanb,  jingyuanb@student.unimelb.edu.au] 
+2: [renw3, renw3@student.unimelb.edu.au] 
+3: [chingl6, chingl6@student.unimelb.edu.au] 
+4: [qtang2, qtang2@student.unimelb.edu.au] 
+
+YouTube Link:https://www.youtube.com/watch?v=wkgBXtk3sDA&feature=youtu.be
+
+README:
+
+Unzip the mobileInstagramProject.zip, double click the file "MyIns.xcworkspace" and open in the Xcode, then, run the project with a simulator or an iPhone device. Then, you could start running the APP now.
+
+

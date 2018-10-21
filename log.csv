@@ -1,0 +1,72 @@
+8ea4992 - Jingyuan Bi, 65 minutes ago : bugs fix
+4a60bf1 - qtang2, 3 hours ago : fix the discover and signin size problem
+bf3c89b - qtang2, 3 hours ago : finish unfollow and other thins
+bd4273a - qtang2, 6 hours ago : rearrange again
+33a266a - qtang2, 6 hours ago : rearrange the storyboards
+8698196 - Jingyuan Bi, 7 hours ago : add adduserviewcontroller
+e2aea5d - Jingyuan Bi, 7 hours ago : this is merged version with rw
+f9ef30b - wren08, 8 hours ago : test
+894aa08 - qtang2, 9 hours ago : fix some bugs and add remove notification nodes
+3e38d3c - qtang2, 9 hours ago : try follow activity
+16636ee - qtang2, 9 hours ago : try follow activity but failed
+2d28dc9 - Jingyuan Bi, 9 hours ago : refactor except home table view cell, 10th commit from rachel
+0e893de - Jingyuan Bi, 9 hours ago : refactor except home table view cell, 10th commit from rachel
+216b09c - qtang2, 11 hours ago : Merge branch 'temp'
+8fbd3d7 - qtang2, 11 hours ago : finish update DB when a user unlike a post
+ceaa896 - Jingyuan Bi, 12 hours ago : Update README.md
+49ec2da - qtang2, 13 hours ago : fix like
+e0a1390 - qtang2, 13 hours ago : try remove like
+9b9d9b4 - Jingyuan Bi, 13 hours ago : Merge branch 'master' of https://github.com/SuperWomanRachel/mobileInstagramProject
+58ea0ef - Jingyuan Bi, 13 hours ago : refactor some classes
+c850c1b - qtang2, 22 hours ago : fix conflict maybe
+6fd0aa0 - Your Nameqtang2, 22 hours ago : did some reconstuctions
+401dee9 - Jingyuan Bi, 25 hours ago : eighth commit from rachel, add refresh header in home table view controller
+5ac9c8b - Your Nameqtang2, 28 hours ago : fix shape of pictures in you page
+b197d2f - Your Nameqtang2, 29 hours ago : Merge branch 'master' of https://github.com/SuperWomanRachel/mobileInstagramProject
+f8642a8 - Your Nameqtang2, 29 hours ago : add function of refreshing following page and you page
+f8c1be7 - CHING MAN LEE, 31 hours ago : added swipe and changed photo
+0128028 - Your Nameqtang2, 33 hours ago : fix likeCount is nil
+96b557d - Your Nameqtang2, 34 hours ago : finish you page,but need more test
+dde166f - Your Nameqtang2, 34 hours ago : fix the bug after merge
+7d72ec6 - Your Nameqtang2, 34 hours ago : try merge 1
+966dadb - Your Nameqtang2, 34 hours ago : try you page firsttime
+dbc7225 - Jingyuan Bi, 35 hours ago : Update README.md
+377e37a - Jingyuan Bi, 35 hours ago : Merge branch 'master' of https://github.com/SuperWomanRachel/mobileInstagramProject
+031a65c - Jingyuan Bi, 35 hours ago : add likeCount in hometableviewcell and post
+179ae4a - Your Nameqtang2, 2 days ago : modified helper
+be4e339 - tq, 2 days ago : finish following page
+e767d90 - tq, 2 days ago : finish following page
+fb42a2f - Jingyuan Bi, 2 days ago : Update README.md
+b8ea5ff - Jingyuan Bi, 2 days ago : Merge branch 'master' of https://github.com/SuperWomanRachel/mobileInstagramProject
+0561c17 - Jingyuan Bi, 2 days ago : this is sixth commit from rachel, fixed some assets and storyboard
+68262b7 - Jingyuan Bi, 2 days ago : Update README.md
+40368e0 - Jingyuan Bi, 2 days ago : Merge branch 'master' of https://github.com/SuperWomanRachel/mobileInstagramProject
+76a7a26 - Jingyuan Bi, 2 days ago : fifth, fixed profile image bug
+a8f401b - tq, 2 days ago : Merge branch 'temp'
+af8f336 - Jingyuan Bi, 2 days ago : Update README.md
+a726f7c - tq, 2 days ago : commit befor merge with Jingyuan
+ab57652 - Jingyuan Bi, 2 days ago : this is the fourth time commit by rachel, the third one has bug and now it is fixed
+1c11eb3 - tq, 3 days ago : upload notification to DB and update activityFeeds
+2d0016c - Jingyuan Bi, 4 days ago : Update README.md
+b54f594 - Jingyuan Bi, 4 days ago : Update README.md
+e15f206 - Jingyuan Bi, 4 days ago : this is the third commit from rachel
+4227fbc - Jingyuan Bi, 4 days ago : this is the third commit from rachel
+15e8d0c - tq, 4 days ago : finish activity paging interface
+e649091 - tq, 5 days ago : add Notification class
+e9f6365 - tq, 6 days ago : test for the activity table
+e0996c0 - tq, 6 days ago : design the ActivityView
+3915489 - tq, 6 days ago : delete the test message i add
+7a2179c - tq, 6 days ago : try push push
+b364b82 - Jingyuan Bi, 6 days ago : Update README.md
+c7b4919 - Jingyuan Bi, 6 days ago : this is the second commit by rachel
+2f1e7f6 - Jingyuan Bi, 3 weeks ago : Update README.md
+5a20d97 - Jingyuan Bi, 3 weeks ago : Update README.md
+319fcb1 - Jingyuan Bi, 3 weeks ago : Update README.md
+536a57d - Jingyuan Bi, 3 weeks ago : Merge branch 'master' of https://github.com/SuperWomanRachel/mobileInstagramProject
+572af4a - Jingyuan Bi, 3 weeks ago : Create readme
+51b1949 - Jingyuan Bi, 3 weeks ago : the first commit, without logout button
+b5ae6b5 - Jingyuan Bi, 3 weeks ago : remove useless file
+69de080 - CHING MAN LEE, 5 weeks ago : First commit
+dfc888c - Jingyuan Bi, 5 weeks ago : first commit
+c35655e - Jingyuan Bi, 5 weeks ago : first commit MyIns
+7bec78a - Jingyuan Bi, 5 weeks ago : Initial Commit

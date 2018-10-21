@@ -64,7 +64,7 @@ class AuthService{
     }
     
     static func setUserInformation(profileImageUrl:String, username:String, email:String, uid:String,onSuccess: @escaping () -> Void ){
-        Config.REF_USER.child(uid).setValue(["username": username,"email":email,"profileImageUrl":profileImageUrl])
+        Config.REF_USER.child(uid).setValue(["username": username,"username_lower":username.lowercased(),"email":email,"profileImageUrl":profileImageUrl])
         onSuccess()
     }
     
