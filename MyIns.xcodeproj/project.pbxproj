@@ -44,6 +44,13 @@
 		FE4ECCB12165F31C00CE4542 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE4ECCB02165F31C00CE4542 /* GoogleService-Info.plist */; };
 		FE4ECCB32165F9A700CE4542 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4ECCB22165F9A700CE4542 /* SignUpViewController.swift */; };
 		FE4ECCB52165FAA000CE4542 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4ECCB42165FAA000CE4542 /* AuthService.swift */; };
+		FE9759EA217B4B500088C824 /* PostCommentsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9759E5217B4B4F0088C824 /* PostCommentsAPI.swift */; };
+		FE9759EB217B4B500088C824 /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9759E6217B4B4F0088C824 /* PostAPI.swift */; };
+		FE9759EC217B4B500088C824 /* CommentAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9759E7217B4B500088C824 /* CommentAPI.swift */; };
+		FE9759ED217B4B500088C824 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9759E8217B4B500088C824 /* API.swift */; };
+		FE9759EE217B4B500088C824 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9759E9217B4B500088C824 /* UserAPI.swift */; };
+		FE9759F0217B4ED00088C824 /* HomeTableViewCellHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9759EF217B4ED00088C824 /* HomeTableViewCellHelper.swift */; };
+		FE9759F4217B6E5E0088C824 /* SendHomeVCDataToDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9759F3217B6E5D0088C824 /* SendHomeVCDataToDB.swift */; };
 		FEA641F2214F8E58002BEAB1 /* MyInsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA641F1214F8E58002BEAB1 /* MyInsTests.swift */; };
 		FEA641FD214F8E58002BEAB1 /* MyInsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA641FC214F8E58002BEAB1 /* MyInsUITests.swift */; };
 		FEF9642A216227560003F861 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF96427216227550003F861 /* ProgressHUD.m */; };
@@ -113,6 +120,13 @@
 		FE4ECCB02165F31C00CE4542 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE4ECCB22165F9A700CE4542 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		FE4ECCB42165FAA000CE4542 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		FE9759E5217B4B4F0088C824 /* PostCommentsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCommentsAPI.swift; sourceTree = "<group>"; };
+		FE9759E6217B4B4F0088C824 /* PostAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
+		FE9759E7217B4B500088C824 /* CommentAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentAPI.swift; sourceTree = "<group>"; };
+		FE9759E8217B4B500088C824 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		FE9759E9217B4B500088C824 /* UserAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
+		FE9759EF217B4ED00088C824 /* HomeTableViewCellHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCellHelper.swift; sourceTree = "<group>"; };
+		FE9759F3217B6E5D0088C824 /* SendHomeVCDataToDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendHomeVCDataToDB.swift; sourceTree = "<group>"; };
 		FEA641D9214F8E55002BEAB1 /* MyIns.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyIns.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA641ED214F8E58002BEAB1 /* MyInsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyInsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA641F1214F8E58002BEAB1 /* MyInsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInsTests.swift; sourceTree = "<group>"; };
@@ -207,6 +221,11 @@
 		FEA641DB214F8E55002BEAB1 /* MyIns */ = {
 			isa = PBXGroup;
 			children = (
+				FE9759E8217B4B500088C824 /* API.swift */,
+				FE9759E7217B4B500088C824 /* CommentAPI.swift */,
+				FE9759E6217B4B4F0088C824 /* PostAPI.swift */,
+				FE9759E5217B4B4F0088C824 /* PostCommentsAPI.swift */,
+				FE9759E9217B4B500088C824 /* UserAPI.swift */,
 				FE4ECCA52165DD8400CE4542 /* LaunchScreen.storyboard */,
 				FE4ECC7F2165DB6000CE4542 /* Start.storyboard */,
 				FE4ECCAA2165DDBD00CE4542 /* Main.storyboard */,
@@ -224,9 +243,11 @@
 				1151A4992179FF750068788F /* ActivityHelper.swift */,
 				FE4ECC8A2165DB6300CE4542 /* Info.plist */,
 				FE4ECCB02165F31C00CE4542 /* GoogleService-Info.plist */,
+				FE9759F3217B6E5D0088C824 /* SendHomeVCDataToDB.swift */,
 				FE4ECC7E2165DB5F00CE4542 /* AddPhotoViewController.swift */,
 				FE4ECC782165DB5D00CE4542 /* HomeTableViewController.swift */,
 				FE4ECC832165DB6100CE4542 /* HomeTableViewCell.swift */,
+				FE9759EF217B4ED00088C824 /* HomeTableViewCellHelper.swift */,
 				FE4ECC792165DB5E00CE4542 /* CommentViewController.swift */,
 				FE4ECC7C2165DB5F00CE4542 /* CommentTableViewCell.swift */,
 				FE4ECC842165DB6100CE4542 /* LikesViewController.swift */,
@@ -494,8 +515,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE9759F0217B4ED00088C824 /* HomeTableViewCellHelper.swift in Sources */,
 				FE4ECC912165DB6300CE4542 /* SignInViewController.swift in Sources */,
 				FE4ECC922165DB6300CE4542 /* AddPhotoViewController.swift in Sources */,
+				FE9759EE217B4B500088C824 /* UserAPI.swift in Sources */,
 				FE4ECC8C2165DB6300CE4542 /* HomeTableViewController.swift in Sources */,
 				FE4ECC9B2165DB6300CE4542 /* Comment.swift in Sources */,
 				5439FF25217AE70800E996BA /* AlertProtocol.swift in Sources */,
@@ -508,9 +531,11 @@
 				FE4ECCB32165F9A700CE4542 /* SignUpViewController.swift in Sources */,
 				FE4ECC9D2165DB6300CE4542 /* Configuration.swift in Sources */,
 				FE4ECCAF2165EB9D00CE4542 /* ProfileViewController.swift in Sources */,
+				FE9759EA217B4B500088C824 /* PostCommentsAPI.swift in Sources */,
 				FE4ECC972165DB6300CE4542 /* HomeTableViewCell.swift in Sources */,
 				FEF9642A216227560003F861 /* ProgressHUD.m in Sources */,
 				FE4ECC952165DB6300CE4542 /* User.swift in Sources */,
+				FE9759F4217B6E5E0088C824 /* SendHomeVCDataToDB.swift in Sources */,
 				1169A2B621777B8C0049AB15 /* FollowingActivityTableViewCell.swift in Sources */,
 				FE4ECC992165DB6300CE4542 /* AppDelegate.swift in Sources */,
 				FE4ECC9C2165DB6300CE4542 /* likesTableViewCell.swift in Sources */,
@@ -518,9 +543,12 @@
 				1169A2B2217771340049AB15 /* FollowingActivityViewController.swift in Sources */,
 				FE4ECC8D2165DB6300CE4542 /* CommentViewController.swift in Sources */,
 				FE4ECCB52165FAA000CE4542 /* AuthService.swift in Sources */,
+				FE9759EC217B4B500088C824 /* CommentAPI.swift in Sources */,
 				FE4ECC8E2165DB6300CE4542 /* Post.swift in Sources */,
+				FE9759EB217B4B500088C824 /* PostAPI.swift in Sources */,
 				1169A2B821777BA90049AB15 /* YouActivityTableViewCell.swift in Sources */,
 				FE4ECC982165DB6300CE4542 /* LikesViewController.swift in Sources */,
+				FE9759ED217B4B500088C824 /* API.swift in Sources */,
 				5439FF1F217AE5DE00E996BA /* CustomGridViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

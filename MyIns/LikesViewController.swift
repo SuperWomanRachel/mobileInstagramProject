@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FirebaseDatabase
+
 
 class LikesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -36,35 +36,49 @@ class LikesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Dispose of any resources that can be recreated.
     }
 
+//    func fetchUsersID(){
+//         API.post.Post_REF.child(postID).observe(.value, with: { (snapshot) in
+//            if let dict = snapshot.value as? [String: Any]{
+//                let post = Post.transformPost(dict: dict, postID: self.postID)
+//                guard let likes = post.likes else{ return }
+//                if likes.count != 0 {
+//                    for key in likes.keys {
+//                        self.fetchUsers(uid: key, completion: { (user) in
+//                            self.users.append(user)
+//                            self.tableView.reloadData()
+//                        })
+//                    }
+//                }
+//            }
+//        })
+//
+//    }
+    
     func fetchUsersID(){
-         Database.database().reference().child("posts").child(postID).observe(.value, with: { (snapshot) in
-            if let dict = snapshot.value as? [String: Any]{
-                let post = Post.transformPost(dict: dict, postID: self.postID)
-                guard let likes = post.likes else{ return }
-                if likes.count != 0 {
-                    for key in likes.keys {
-                        self.fetchUsers(uid: key, completion: { (user) in
-                            self.users.append(user)
-                            self.tableView.reloadData()
-                        })
-                    }
+        API.post.fetchPost(withPostID: postID) { (post) in
+            guard let likes = post.likes else{ return }
+            if likes.count != 0 {
+                for key in likes.keys {
+                    API.user.fetchUser(uid: key, completion: { (user) in
+                        self.users.append(user)
+                        self.tableView.reloadData()
+                    })
                 }
             }
-        })
-        
+        }
     }
 
-    //load users
-    func fetchUsers(uid: String,completion : @escaping(User) -> Void){
-        _ = Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dict = snapshot.value as? [String: Any]{
-                let user = User.transformUser(dict: dict, uid: uid)
-                //                self.users.append(user)
-                print(user.email!)
-                completion(user)
-            }
-        })
-    }
+//    //load users
+//    func fetchUsers(uid: String,completion : @escaping(User) -> Void){
+//        _ = API.user.Users_REF.child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+//            if let dict = snapshot.value as? [String: Any]{
+//                let user = User.transformUser(dict: dict, uid: uid)
+//                //                self.users.append(user)
+//                print(user.email!)
+//                completion(user)
+//            }
+//        })
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows

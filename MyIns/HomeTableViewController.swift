@@ -73,7 +73,7 @@ class HomeTableViewController: UITableViewController, CLLocationManagerDelegate 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
-    }
+    } 
     // updated 201810161651
     func getCurrentUserFeed(){
         let currentUserID = Auth.auth().currentUser?.uid

@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import FirebaseDatabase
-import FirebaseAuth
+//import FirebaseDatabase
+//import FirebaseAuth
 
 class CommentViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
 
@@ -50,34 +50,46 @@ class CommentViewController: UIViewController,UITableViewDelegate, UITableViewDa
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
     }
-   
-//load comments
+    
+    //load comments
     func fetchComments(){
-        Database.database().reference().child("postComments").child(postID!).observe(.childAdded) { (pcsnapshot) in
-            Database.database().reference().child("comments").child(pcsnapshot.key).observeSingleEvent(of: .value, with: { (commentSnapshot) in
-                if let dict = commentSnapshot.value as? [String: Any]{
-                    let comment = Comment.transformComment(dict: dict)
-                    self.fetchUsers(uid: comment.uid!, completion: { (user) in
-                        self.users.append(user)
-                        self.comments.append(comment)
-                        self.tableView.reloadData()
-                    })
-                    
-                }
+        API.postComments.fetchPostComments(withPostID: postID!) { (pcsnapshot) in
+            API.comment.fetchComment(withCommentID: pcsnapshot, Competion: { (comment) in
+                API.user.fetchUser(uid: comment.uid!, completion: { (user) in
+                    self.users.append(user)
+                    self.comments.append(comment)
+                    self.tableView.reloadData()
+                })
             })
-            }
         }
-
-    //load users
-    func fetchUsers(uid: String,completion : @escaping(User) -> Void){
-        _ = Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dict = snapshot.value as? [String: Any]{
-                let user = User.transformUser(dict: dict, uid: uid)
-                print(user.email!)
-                completion(user)
-            }
-        })
     }
+////load comments
+//    func fetchComments(){
+//        Database.database().reference().child("postComments").child(postID!).observe(.childAdded) { (pcsnapshot) in
+//            Database.database().reference().child("comments").child(pcsnapshot.key).observeSingleEvent(of: .value, with: { (commentSnapshot) in
+//                if let dict = commentSnapshot.value as? [String: Any]{
+//                    let comment = Comment.transformComment(dict: dict)
+//                    self.fetchUsers(uid: comment.uid!, completion: { (user) in
+//                        self.users.append(user)
+//                        self.comments.append(comment)
+//                        self.tableView.reloadData()
+//                    })
+//
+//                }
+//            })
+//            }
+//        }
+
+//    //load users
+//    func fetchUsers(uid: String,completion : @escaping(User) -> Void){
+//        _ = Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+//            if let dict = snapshot.value as? [String: Any]{
+//                let user = User.transformUser(dict: dict, uid: uid)
+//                print(user.email!)
+//                completion(user)
+//            }
+//        })
+//    }
     
     @objc func handleCommentText(){
         if (self.commentText.text?.isEmpty)! {
@@ -90,28 +102,32 @@ class CommentViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func postCommentBtnClicked(_ sender: Any) {
-        let commentsRef = Database.database().reference().child("comments")
-        let commentID = commentsRef.childByAutoId().key
-        let newCommentRef = commentsRef.child(commentID!)
-        guard let currentUser = Auth.auth().currentUser else { return  }
-        let currentUserID = currentUser.uid
-        let now = Config.getCurrentTimeStamp()
-        newCommentRef.setValue(["uid": currentUserID,"commentText": commentText.text!, "timestamp":now ]) { (error, newCommentRef) in
-            if error != nil {
-                ProgressHUD.showError(error as! String)
-                return
-            }
-            let postCommentsRef = Database.database().reference().child("postComments").child(self.postID).child(commentID!)
-            postCommentsRef.setValue(true, withCompletionBlock: { (error, ref) in
-                if error != nil {
-                    ProgressHUD.showError(error as! String)
-                    return
-                }
-            })
-        }
+        API.postComments.postNewComment(postID: self.postID, commentText: commentText.text!)
         clean()
         handleCommentText()
         view.endEditing(true)
+//        let commentsRef = Database.database().reference().child("comments")
+//        let commentID = commentsRef.childByAutoId().key
+//        let newCommentRef = commentsRef.child(commentID!)
+//        guard let currentUser = Auth.auth().currentUser else { return  }
+//        let currentUserID = currentUser.uid
+//        let now = Config.getCurrentTimeStamp()
+//        newCommentRef.setValue(["uid": currentUserID,"commentText": commentText.text!, "timestamp":now ]) { (error, newCommentRef) in
+//            if error != nil {
+//                ProgressHUD.showError(error as! String)
+//                return
+//            }
+//            let postCommentsRef = Database.database().reference().child("postComments").child(self.postID).child(commentID!)
+//            postCommentsRef.setValue(true, withCompletionBlock: { (error, ref) in
+//                if error != nil {
+//                    ProgressHUD.showError(error as! String)
+//                    return
+//                }
+//            })
+//        }
+//        clean()
+//        handleCommentText()
+//        view.endEditing(true)
     }
     
     
