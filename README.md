@@ -33,3 +33,12 @@ add assets, fixed storyboard.
 ## rachel seventh commit:  
 201810201250:  
 add likeCount in HomeTableViewCell.swift and Post.swift  
+
+## rachel 8th commit:  
+20181020:  
+add refresh view in home table view cell.  
+
+## rachel 9th commit:  
+2010102111:  
+refactor some classes.  
+
