@@ -12,7 +12,6 @@ import FirebaseAuth
 class SignInViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
-    
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInBtn: UIButton!
     
@@ -48,18 +47,15 @@ class SignInViewController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touched began keyboard test")
         view.endEditing(true)
     }
     
 
     @IBAction func signInBtn_Touched(_ sender: Any) {
         view.endEditing(true)
-        print("sign in Btn touched")
         ProgressHUD.show("Waiting ...", interaction: false)
         AuthService.signIn(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
             ProgressHUD.showSuccess("Success!!")
-            print("perform segue!!")
             self.performSegue(withIdentifier: "signInToTabbar", sender: nil)
             
         }, onError: { error in

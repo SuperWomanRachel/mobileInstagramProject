@@ -11,7 +11,6 @@ import Alamofire
 
 class ActivityHelper{
     
-    
     static func updateView(notification: Notification,timeLabel: UILabel,descriptionLabel: UILabel,photo: UIImageView){
         let postId = notification.objectId
         switch notification.type!{
@@ -79,7 +78,6 @@ class ActivityHelper{
     static func setupUser(user: User,usernameLabel: UILabel,profileImage:UIImageView){
         usernameLabel.text = user.username
         if user.imageUserURL == nil {
-            print("profile image url is nil")
             profileImage.image = UIImage(named: "profile_signUp")
         }else{
             let userImgurl = user.imageUserURL

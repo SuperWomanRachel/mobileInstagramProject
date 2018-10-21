@@ -21,18 +21,13 @@ class YouActivityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print("load YOU view")
-        
         loadActivity()
-        
         
         header.setRefreshingTarget(self, refreshingAction: #selector(self.headerRefresh))
         self.youTableView.mj_header = header
     }
     
     @objc func headerRefresh(){
-        print("header refresh")
         reloadActivity()
         self.youTableView.reloadData()
         self.youTableView.mj_header.endRefreshing()
@@ -41,7 +36,6 @@ class YouActivityViewController: UIViewController {
     func reloadActivity(){
         notifications.removeAll()
         users.removeAll()
-        print("remove all users and notifications")
         loadActivity()
     }
     

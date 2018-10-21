@@ -200,6 +200,7 @@ class HomeTableViewCell: UITableViewCell {
         }else{
             //            likesRef.child(currentUserID!).removeValue()
             self.likeBtn.image = UIImage(named: "like")
+            
         }
         postRef = Database.database().reference().child("posts").child((post?.postID)!)
         incrementLikes(forRef: postRef)
