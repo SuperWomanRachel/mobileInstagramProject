@@ -13,12 +13,12 @@ import FirebaseAuth
 
 
 class HomeTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var caption: UILabel!
-
+    
     @IBOutlet weak var likeBtn: UIImageView!
     @IBOutlet weak var commentBtn: UIImageView!
     @IBOutlet weak var shareBtn: UIButton!
@@ -27,14 +27,14 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var viewAllLikesBtn: UIButton!
     
     var homeTableView: HomeTableViewController?
-
+    
     var post: Post? {
         didSet{
             updateView()
         }
     }
-
-//    var users = [User]()
+    
+    //    var users = [User]()
     
     
     //update cell
@@ -50,8 +50,7 @@ class HomeTableViewCell: UITableViewCell {
         loadLikes(post: post!)
         Database.database().reference().child("posts").child((post?.postID)!).observe(.childChanged) { (snapshot) in
             if let likes = snapshot.value as? [String: Any]{
-                let count = likes.count
-                self.updateLikeCount(post: self.post!, count: count)
+                self.updateLikeCount(post: self.post!)
             }
         }
         
@@ -69,15 +68,19 @@ class HomeTableViewCell: UITableViewCell {
                     self.likeBtn.image = UIImage(named: "like")
                 }
                 if post.likeCount != nil {
-                    let count = post.likeCount!
-                    self.updateLikeCount(post: post,count: count)
+//                    let count = post.likeCount!
+                    self.updateLikeCount(post: post)
                 }
             }
         }
     }
     
-    func updateLikeCount(post: Post, count: Int){
+    func updateLikeCount(post: Post){
+        print("________________")
+        print("update like count")
+        print(post.caption)
         if post.likeCount != 0  {
+            let count = post.likeCount!
             self.viewAllLikesBtn.isEnabled = true
             self.viewAllLikesBtn.setTitleColor(UIColor.blue, for: UIControlState.normal)
             self.showUserListLabel.text = "\(count) like(s)"
@@ -123,6 +126,7 @@ class HomeTableViewCell: UITableViewCell {
             if let dict = snapshot?.value as? [String: Any]{
                 let post = Post.transformPost(dict: dict, postID: (snapshot?.key)!)
                 self.loadLikes(post: post)
+                self.updateLikeCount(post: post)
             }
         }
     }
@@ -136,18 +140,18 @@ class HomeTableViewCell: UITableViewCell {
                 if user.imageUserURL == nil {
                     self.profileImage.image = UIImage(named: "profile_signUp")
                 }else{
-                let userImgurl = user.imageUserURL
-                Alamofire.request(userImgurl!).responseImage { (response) in
-                    if let image = response.result.value {
-                        self.profileImage.image = image
-                    }
+                    let userImgurl = user.imageUserURL
+                    Alamofire.request(userImgurl!).responseImage { (response) in
+                        if let image = response.result.value {
+                            self.profileImage.image = image
+                        }
                     }
                 }
             }
         })
     }
     
-
+    
     
     //load users who like this post
     func fetchUsers(uid: String,completion : @escaping(User) -> Void){
@@ -155,7 +159,7 @@ class HomeTableViewCell: UITableViewCell {
             if let dict = snapshot.value as? [String: Any]{
                 let user = User.transformUser(dict: dict, uid: uid)
                 //                self.users.append(user)
-//                print(user.email!)
+                //                print(user.email!)
                 completion(user)
             }
         })
@@ -163,7 +167,7 @@ class HomeTableViewCell: UITableViewCell {
     
     @IBAction func showUserList(_ sender: Any) {
         if let postID = post?.postID {
-//            print(postID)
+            //            print(postID)
             homeTableView?.performSegue(withIdentifier: "LikesListSegue", sender: postID)
         }
     }
@@ -182,13 +186,15 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     @objc func LikeImageViewClicked(){
-        //        print("like btn clicked")
+        print("like imaage view clicked")
+        print(post?.caption)
         let currentUserID = Auth.auth().currentUser?.uid
         var postRef = Database.database().reference().child("posts").child((post?.postID)!)
         //        let likesRef = postRef.child("likes")
         if self.likeBtn.image == UIImage(named: "like") {
             //            likesRef.child(currentUserID!).setValue(true)
-            NotificationService.uploadActivity(currentUserID: currentUserID!, post: post!,type: "like")
+            
+//            NotificationService.uploadActivity(currentUserID: currentUserID!, post: post!,type: "like")
             
             self.likeBtn.image = UIImage(named: "liked")
         }else{
@@ -203,7 +209,30 @@ class HomeTableViewCell: UITableViewCell {
         
         
     }
-
+    
+    //Edit by Tang Qian
+    //    func sendLikeNotificationToDB(currentUserID: String,postID: String){
+    //        let notificationRef = Database.database().reference().child("notifications")
+    //        let notificationID = notificationRef.childByAutoId().key
+    //        let newNotificationRef = notificationRef.child(notificationID!)
+    //        newNotificationRef.setValue(["from": currentUserID,"type":"like","objectId":postID,"timestamp": Config.getCurrentTimeStamp()])
+    //        print("send a like activity to notification")
+    //
+    //        sendLikeToFeedsDB( userID: currentUserID,likeNotificationID: notificationID!)
+    //
+    //    }
+    
+    //Edit by Tang Qian
+    //    func sendLikeToFeedsDB(userID: String,likeNotificationID: String){
+    //        Database.database().reference().child("feeds").child(userID).setValue([likeNotificationID: true])
+    //
+    //        Database.database().reference().child("followers").child(userID).observe(.childAdded) { (snapshot) in
+    //            let followerID = snapshot.key
+    //            Database.database().reference().child("feeds").child(followerID).setValue([likeNotificationID: true])
+    //        }
+    //
+    //        print("send a like feed  to feeds")
+    //    }
     
     
     @objc func commentImageViewClicked(){
@@ -212,21 +241,14 @@ class HomeTableViewCell: UITableViewCell {
         }
     }
     
-
-
+    
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-    }
-
-    
-    @IBAction func clickToShare(_ sender: UIButton) {
-        print("share~")
-        if let image = self.photo.image {
-            homeTableView?.swipeImage = image
-        }
         
     }
-
-
+    
+    
+    
 }
+
