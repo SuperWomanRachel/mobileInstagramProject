@@ -21,6 +21,7 @@ class Config{
     static var REF_ACTIVITYFEEDS = REF_DB.child("activityFeeds")
     static var REF_POSTS = REF_DB.child("posts")
     static var REF_YOUACTIVITYFEEDS = REF_DB.child("youActivityFeeds")
+    static var REF_FOLLOWERS = REF_DB.child("followers")
     
     // added by @jingyuanb
     static func timestampToDate(timeStamp: Int) -> String {

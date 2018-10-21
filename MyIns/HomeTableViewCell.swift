@@ -102,6 +102,7 @@ class HomeTableViewCell: UITableViewCell {
                 if let _ = likes[uid] {
                     // Unstar the post and remove self from stars
                     likeCount -= 1
+                    //let postID = thePost.postID
                     NotificationService.removeActivity(userID: uid,post: thePost, noteID: likes[uid]! )
                     likes.removeValue(forKey: uid)
                     
@@ -109,7 +110,7 @@ class HomeTableViewCell: UITableViewCell {
                     // Star the post and add self to stars
                     likeCount += 1
                     //likes[uid] = true
-                    NotificationService.uploadActivity(currentUserID: uid, post: thePost, type: "like")
+                    NotificationService.uploadActivity(currentUserID: uid, post: thePost)
                 }
                 post["likeCount"] = likeCount as AnyObject?
                 post["likes"] = likes as AnyObject?

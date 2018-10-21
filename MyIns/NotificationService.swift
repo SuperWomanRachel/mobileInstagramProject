@@ -11,7 +11,8 @@ import FirebaseDatabase
 
 class NotificationService{
     
-    static func uploadActivity(currentUserID: String,post: Post,type: String){
+    static func uploadActivity(currentUserID: String,post: Post){
+        // activityID could be the postID if like event happen, or the userID if follow event happen
         let notificationID = Config.REF_NOTIFICATIONS.childByAutoId().key
         let newNotificationRef = Config.REF_NOTIFICATIONS.child(notificationID!)
         let postID = post.postID
@@ -24,16 +25,17 @@ class NotificationService{
     
     static func sendActivityToFeedsDB(userID: String,notificationID: String,postID: String){
         print("newsendActivityToFeedsDB")
-        Config.REF_ACTIVITYFEEDS.child(userID).child(notificationID).setValue(true)
         
         Config.REF_DB.child("followers").child(userID).observe(.childAdded) { (snapshot) in
             let followerID = snapshot.key
             Config.REF_DB.child("activityFeeds").child(followerID).child(notificationID).setValue( true)
         }
-        
+       
+       // like event need to set the noteID to the post in posts node in DB
         
         Config.REF_POSTS.child(postID).child("likes").child(userID).setValue(notificationID)
         print("change the value of the user in likes to notificationID ,uID is "+"\(userID)"+",****noteID is\(notificationID)")
+        
         
     }
     
@@ -53,7 +55,7 @@ class NotificationService{
     }
     
     static func removeActivityInFeedsDB(userID: String,notificationID: String){
-        Config.REF_ACTIVITYFEEDS.child(userID).child(notificationID).removeValue()
+        
         Config.REF_DB.child("followers").child(userID).observe(.childAdded) { (snapshot) in
             let followerID = snapshot.key
             Config.REF_DB.child("activityFeeds").child(followerID).child(notificationID).removeValue()
