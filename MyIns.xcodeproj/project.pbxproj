@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1105F94221762BE90034D73F /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1105F94121762BE80034D73F /* Notification.swift */; };
+		113EC268217C533A0042C9E1 /* Photo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113EC267217C533A0042C9E1 /* Photo.storyboard */; };
+		113EC26A217C55DC0042C9E1 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113EC269217C55DC0042C9E1 /* Home.storyboard */; };
 		1147D5312174E466003AFB51 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147D5302174E466003AFB51 /* ActivityViewController.swift */; };
 		1151A49A2179FF750068788F /* ActivityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151A4992179FF750068788F /* ActivityHelper.swift */; };
 		1169A2B021776EEA0049AB15 /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1169A2AF21776EEA0049AB15 /* Activity.storyboard */; };
@@ -90,6 +92,8 @@
 		0C475D4BD50A63A162DEB816 /* Pods-MyInsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyInsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyInsTests/Pods-MyInsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0CCC56EB0BCE8D52A80C330A /* Pods_MyInsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyInsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1105F94121762BE80034D73F /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		113EC267217C533A0042C9E1 /* Photo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Photo.storyboard; sourceTree = "<group>"; };
+		113EC269217C55DC0042C9E1 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		1147D5302174E466003AFB51 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		1151A4992179FF750068788F /* ActivityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityHelper.swift; sourceTree = "<group>"; };
 		1169A2AF21776EEA0049AB15 /* Activity.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
@@ -253,6 +257,8 @@
 				FE4ECCA52165DD8400CE4542 /* LaunchScreen.storyboard */,
 				FE4ECC7F2165DB6000CE4542 /* Start.storyboard */,
 				FE4ECCAA2165DDBD00CE4542 /* Main.storyboard */,
+				113EC269217C55DC0042C9E1 /* Home.storyboard */,
+				113EC267217C533A0042C9E1 /* Photo.storyboard */,
 				1169A2AF21776EEA0049AB15 /* Activity.storyboard */,
 				A21BF3DE217C3E6F001D78C4 /* profile.storyboard */,
 				A21BF3E0217C3E89001D78C4 /* discover.storyboard */,
@@ -267,6 +273,7 @@
 				1147D5302174E466003AFB51 /* ActivityViewController.swift */,
 				1151A4992179FF750068788F /* ActivityHelper.swift */,
 				11BEBC4721780DE800D0168C /* NotificationService.swift */,
+				A21BF3CA217C3D12001D78C4 /* FollowHelper.swift */,
 				FE4ECC8A2165DB6300CE4542 /* Info.plist */,
 				FE4ECCB02165F31C00CE4542 /* GoogleService-Info.plist */,
 				FE9759F3217B6E5D0088C824 /* SendHomeVCDataToDB.swift */,
@@ -288,7 +295,6 @@
 				5439FF1E217AE5DE00E996BA /* CustomGridViewController.swift */,
 				5439FF22217AE63800E996BA /* ConnectViewController.swift */,
 				5439FF24217AE70800E996BA /* AlertProtocol.swift */,
-				A21BF3CA217C3D12001D78C4 /* FollowHelper.swift */,
 				A21BF3C8217C3CF1001D78C4 /* DiscoverViewController.swift */,
 				A21BF3CC217C3D40001D78C4 /* HeaderCollectionReusableView.swift */,
 				A21BF3CE217C3D5A001D78C4 /* Helper.swift */,
@@ -430,12 +436,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE4ECCA82165DD8500CE4542 /* LaunchScreen.storyboard in Resources */,
+				113EC26A217C55DC0042C9E1 /* Home.storyboard in Resources */,
 				FEF9642B216227560003F861 /* ProgressHUD.bundle in Resources */,
 				A21BF3DF217C3E6F001D78C4 /* profile.storyboard in Resources */,
 				1169A2B021776EEA0049AB15 /* Activity.storyboard in Resources */,
 				FE4ECCAB2165DDBD00CE4542 /* Main.storyboard in Resources */,
 				FE4ECC932165DB6300CE4542 /* Start.storyboard in Resources */,
 				A21BF3E1217C3E8A001D78C4 /* discover.storyboard in Resources */,
+				113EC268217C533A0042C9E1 /* Photo.storyboard in Resources */,
 				FE4ECCA32165DD1C00CE4542 /* Assets.xcassets in Resources */,
 				FE4ECCB12165F31C00CE4542 /* GoogleService-Info.plist in Resources */,
 			);
