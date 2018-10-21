@@ -18,6 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyIns" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2z-FL-szF">
+                                <rect key="frame" x="143.5" y="150" width="88.5" height="38"/>
+                                <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="rah-sb-sI5">
                                 <rect key="frame" x="20" y="228" width="335" height="211"/>
                                 <subviews>
@@ -99,12 +105,6 @@
                                     <segue destination="MNx-ao-aka" kind="presentation" id="ke2-xS-7Sk"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyIns" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2z-FL-szF">
-                                <rect key="frame" x="143.5" y="150" width="88.5" height="38"/>
-                                <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -278,7 +278,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FmG-DS-5iG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-439" y="482"/>
+            <point key="canvasLocation" x="-602" y="334"/>
         </scene>
         <!--TabBar-->
         <scene sceneID="00W-hO-WIs">
@@ -286,13 +286,13 @@
                 <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="TabBar" id="rwZ-Nk-51x" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9th-nQ-gQL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="14" y="-326"/>
+            <point key="canvasLocation" x="119" y="-64"/>
         </scene>
     </scenes>
     <resources>
         <image name="profile_signUp" width="29" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6sn-Wm-xzY"/>
+        <segue reference="buH-2T-eyC"/>
     </inferredMetricsTieBreakers>
 </document>
