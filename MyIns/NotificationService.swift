@@ -18,29 +18,54 @@ class NotificationService{
         newNotificationRef.setValue(["from": currentUserID,"type":type,"objectId":postID!,"timestamp": Config.getCurrentTimeStamp()])
         print("send a activity to notification")
         
-        sendActivityToFeedsDB( userID: currentUserID,notificationID: notificationID!)
+        newsendActivityToFeedsDB( userID: currentUserID,notificationID: notificationID!,postID: postID!)
         sendYouActivityToFeedsDB(post: post,notificationID: notificationID!)
     }
     
-    static func sendActivityToFeedsDB(userID: String,notificationID: String){
+    static func newsendActivityToFeedsDB(userID: String,notificationID: String,postID: String){
+        print("newsendActivityToFeedsDB")
         Config.REF_ACTIVITYFEEDS.child(userID).child(notificationID).setValue(true)
         
         Config.REF_DB.child("followers").child(userID).observe(.childAdded) { (snapshot) in
             let followerID = snapshot.key
             Config.REF_DB.child("activityFeeds").child(followerID).child(notificationID).setValue( true)
         }
-    
+        
+        
+        Config.REF_POSTS.child(postID).child("likes").child(userID).setValue(notificationID)
+        print("change the value of the user in likes to notificationID ,uID is "+"\(userID)"+",****noteID is\(notificationID)")
+        
     }
+    
+//    static func sendActivityToFeedsDB(userID: String,notificationID: String){
+//        Config.REF_ACTIVITYFEEDS.child(userID).child(notificationID).setValue(true)
+//
+//        Config.REF_DB.child("followers").child(userID).observe(.childAdded) { (snapshot) in
+//            let followerID = snapshot.key
+//            Config.REF_DB.child("activityFeeds").child(followerID).child(notificationID).setValue( true)
+//        }
+//
+//    }
     
     static func sendYouActivityToFeedsDB(post:Post,notificationID: String){
         let receiverID = post.uid
         Config.REF_YOUACTIVITYFEEDS.child(receiverID!).child(notificationID).setValue(true)
-        print("check if the receiver's feed successfully updated&&&&&&&&&&&&&&&&&")
-        print(receiverID!)
-        print(notificationID)
+//        print("check if the receiver's feed successfully updated&&&&&&&&&&&&&&&&&")
+//        print(receiverID!)
+//        print(notificationID)
     }
     //TODO: the problem is : cannot get the notification Id when a user unlike/unfollow something
-    static func ignoreActivity(){
+    static func ignoreActivity(userID: String , post: Post){
+        print("ignoreActivity")
+        Config.REF_POSTS.child("likes").child(userID).observeSingleEvent(of: .value, with: {
+            snapshot in
+            let noteID = snapshot.value
+            print("noteID get from post " + "\(noteID)")
+            //ignoreActivityInFeedsDB(userID: userID, notificationID: noteID)
+        })
+        Config.REF_POSTS.child("likes").child(userID).setValue(false)
+        print("set value to false")
+        
         
     }
     
