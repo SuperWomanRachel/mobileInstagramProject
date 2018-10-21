@@ -23,6 +23,27 @@ class NotificationService{
         sendYouActivityToFeedsDB(post: post,notificationID: notificationID!)
     }
     
+    static func uploadFollowActivity(currentUserID: String,newFollowUserID: String,type: String){
+        let notificationID = Config.REF_NOTIFICATIONS.childByAutoId().key
+        let newNotificationRef = Config.REF_NOTIFICATIONS.child(notificationID!)
+        
+    }
+    
+    static func sendFollowActivityToFeedsDB(userID: String,notificationID: String){
+        print("newsendActivityToFeedsDB")
+        
+        Config.REF_DB.child("followers").child(userID).observe(.childAdded) { (snapshot) in
+            let followerID = snapshot.key
+            Config.REF_DB.child("activityFeeds").child(followerID).child(notificationID).setValue( true)
+        }
+        
+        // like event need to set the noteID to the post in posts node in DB
+        
+        
+        
+        
+    }
+    
     static func sendActivityToFeedsDB(userID: String,notificationID: String,postID: String){
         print("newsendActivityToFeedsDB")
         
@@ -120,6 +141,9 @@ class NotificationService{
         })
         
     }
+    
+    
+    
     
     
 }
