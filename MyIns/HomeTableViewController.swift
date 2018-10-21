@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FirebaseDatabase
+//import FirebaseDatabase
 import GeoFire
 import FirebaseAuth
 import MJRefresh
@@ -21,6 +21,7 @@ class HomeTableViewController: UITableViewController, CLLocationManagerDelegate 
     var posts = [Post]()
     var swipeImage = UIImage()
     let header = MJRefreshHeader()
+    let sendDataToDB = SendDataToDB()
     //    var followings = [User]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,8 +78,8 @@ class HomeTableViewController: UITableViewController, CLLocationManagerDelegate 
     // updated 201810161651
     func getCurrentUserFeed(){
         let currentUserID = Auth.auth().currentUser?.uid
-        Database.database().reference().child("feeds").child(currentUserID!).observe(.childAdded, with: { (snapshot) in
-            Database.database().reference().child("posts").child(snapshot.key).observeSingleEvent(of: .value, with: { (pSnapshot) in
+        sendDataToDB.Feeds_REF.child(currentUserID!).observe(.childAdded, with: { (snapshot) in
+            API.post.Post_REF.child(snapshot.key).observeSingleEvent(of: .value, with: { (pSnapshot) in
                 
                 //copy from loadPosts()
                 if let dict = pSnapshot.value as? [String:Any] {

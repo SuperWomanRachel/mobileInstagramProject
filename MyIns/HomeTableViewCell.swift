@@ -109,8 +109,12 @@ class HomeTableViewCell: UITableViewCell {
                 } else {
                     // Star the post and add self to stars
                     likeCount += 1
+
                     //likes[uid] = true
+
                     NotificationService.uploadActivity(currentUserID: uid, post: thePost)
+
+                    
                 }
                 post["likeCount"] = likeCount as AnyObject?
                 post["likes"] = likes as AnyObject?
@@ -191,13 +195,15 @@ class HomeTableViewCell: UITableViewCell {
     @objc func LikeImageViewClicked(){
 //        print("like imaage view clicked")
 //        print(post?.caption)
-//        let currentUserID = Auth.auth().currentUser?.uid
+
+        let currentUserID = Auth.auth().currentUser?.uid
+
         var postRef = Database.database().reference().child("posts").child((post?.postID)!)
         //        let likesRef = postRef.child("likes")
         if self.likeBtn.image == UIImage(named: "like") {
             //            likesRef.child(currentUserID!).setValue(true)
             
-//            NotificationService.uploadActivity(currentUserID: currentUserID!, post: post!,type: "like")
+            NotificationService.uploadActivity(currentUserID: currentUserID!, post: post!,type: "like")
             
             self.likeBtn.image = UIImage(named: "liked")
         }else{
