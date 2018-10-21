@@ -10,8 +10,8 @@ import UIKit
 import CoreImage
 import Alamofire
 import AlamofireImage
-//import FirebaseStorage
-//import FirebaseDatabase
+import FirebaseStorage
+import FirebaseDatabase
 import FirebaseAuth
 import CoreLocation
 import GeoFire
@@ -83,8 +83,8 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
         
         if let photoData = UIImagePNGRepresentation(imageView.image!) {
             let photoID = NSUUID().uuidString
-            let storageRef = sendDataToDB.PostPhotos_storage_REF.child(photoID)
-//            let storageRef = Storage.storage().reference().child("postPhotos").child(photoID)
+//            let storageRef = sendDataToDB.PostPhotos_storage_REF.child(photoID)
+            let storageRef = Storage.storage().reference().child("postPhotos").child(photoID)
             storageRef.putData(photoData, metadata: nil) { (metadata, error) in
                 if error != nil {
                     ProgressHUD.showError(error?.localizedDescription)
@@ -150,23 +150,23 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
     //ADDED by @jingyuanb
     //send post to db: myPosts
     func sendToMyPostsDB(postID: String, userID: String){
-        sendDataToDB.sendToFeedsDB(postID: postID, userID: userID)
-//        _ = Database.database().reference().child("myPosts").child(userID).child(postID).setValue(true) { (error, mypostRef) in
-//            if error != nil {
-//                ProgressHUD.showError(error?.localizedDescription)
-//                return
-//            }
-//        }
+//        sendDataToDB.sendToFeedsDB(postID: postID, userID: userID)
+        _ = Database.database().reference().child("myPosts").child(userID).child(postID).setValue(true) { (error, mypostRef) in
+            if error != nil {
+                ProgressHUD.showError(error?.localizedDescription)
+                return
+            }
+        }
     }
     //ADDED by @jingyuanb updated 20181017
     //send post to db: feeds
     func sendToFeedsDB(postID: String, userID: String){
-        sendDataToDB.sendToFeedsDB(postID: postID, userID: userID)
-//        Database.database().reference().child("feeds").child(userID).child(postID).setValue(true)
-//        Database.database().reference().child("followers").child(userID).observe(.childAdded) { (snapshot) in
-//            let followerID = snapshot.key
-//            Database.database().reference().child("feeds").child(followerID).child(postID).setValue(true)
-//        }
+//        sendDataToDB.sendToFeedsDB(postID: postID, userID: userID)
+        Database.database().reference().child("feeds").child(userID).child(postID).setValue(true)
+        Database.database().reference().child("followers").child(userID).observe(.childAdded) { (snapshot) in
+            let followerID = snapshot.key
+            Database.database().reference().child("feeds").child(followerID).child(postID).setValue(true)
+        }
     }
     
     //ADDED by @jingyuanb

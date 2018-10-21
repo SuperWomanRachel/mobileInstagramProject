@@ -77,8 +77,9 @@ class HomeTableViewController: UITableViewController, CLLocationManagerDelegate 
     } 
     // updated 201810161651
     func getCurrentUserFeed(){
-        let currentUserID = Auth.auth().currentUser?.uid
-        sendDataToDB.Feeds_REF.child(currentUserID!).observe(.childAdded, with: { (snapshot) in
+        if let currentUserID = Auth.auth().currentUser?.uid{
+            sendDataToDB.Feeds_REF.child(currentUserID).observe(.childAdded, with: { (snapshot) in
+            if snapshot.exists(){
             API.post.Post_REF.child(snapshot.key).observeSingleEvent(of: .value, with: { (pSnapshot) in
                 
                 //copy from loadPosts()
@@ -104,9 +105,12 @@ class HomeTableViewController: UITableViewController, CLLocationManagerDelegate 
                     print(self.posts)
                     self.tableView.reloadData()
                 }
+                
                 //copy end
             })
+            }
         })
+        }
     }
     
     

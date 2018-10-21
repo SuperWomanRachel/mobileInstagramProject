@@ -20,6 +20,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Hey! We need your location to sort posts ! PLEASE DO NOT DENIED THIS. If you denied this and want to allow this later, you need to allow MyIns to access Location through Settings.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Hey! We need your location to sort posts ! PLEASE DO NOT DENIED THIS. If you denied this and want to allow this later, you need to allow MyIns to access Location through Settings.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -41,9 +45,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Hey! We need your location to sort posts ! PLEASE DO NOT DENIED THIS. If you denied this and want to allow this later, you need to allow MyIns to access Location through Settings.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Hey! We need your location to sort posts ! PLEASE DO NOT DENIED THIS. If you denied this and want to allow this later, you need to allow MyIns to access Location through Settings.</string>
 </dict>
 </plist>
