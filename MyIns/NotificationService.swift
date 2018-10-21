@@ -18,50 +18,56 @@ class NotificationService{
         newNotificationRef.setValue(["from": currentUserID,"type":type,"objectId":postID!,"timestamp": Config.getCurrentTimeStamp()])
         print("send a activity to notification")
         
-        sendActivityToFeedsDB( userID: currentUserID,notificationID: notificationID!)
+        sendActivityToFeedsDB( userID: currentUserID,notificationID: notificationID!,postID: postID!)
         sendYouActivityToFeedsDB(post: post,notificationID: notificationID!)
     }
     
-    static func sendActivityToFeedsDB(userID: String,notificationID: String){
+    static func sendActivityToFeedsDB(userID: String,notificationID: String,postID: String){
+        print("newsendActivityToFeedsDB")
         Config.REF_ACTIVITYFEEDS.child(userID).child(notificationID).setValue(true)
         
         Config.REF_DB.child("followers").child(userID).observe(.childAdded) { (snapshot) in
             let followerID = snapshot.key
             Config.REF_DB.child("activityFeeds").child(followerID).child(notificationID).setValue( true)
         }
-    
+        
+        
+        Config.REF_POSTS.child(postID).child("likes").child(userID).setValue(notificationID)
+        print("change the value of the user in likes to notificationID ,uID is "+"\(userID)"+",****noteID is\(notificationID)")
+        
     }
+    
     
     static func sendYouActivityToFeedsDB(post:Post,notificationID: String){
         let receiverID = post.uid
         Config.REF_YOUACTIVITYFEEDS.child(receiverID!).child(notificationID).setValue(true)
-        print("check if the receiver's feed successfully updated&&&&&&&&&&&&&&&&&")
-        print(receiverID!)
-        print(notificationID)
-    }
-    //TODO: the problem is : cannot get the notification Id when a user unlike/unfollow something
-    static func ignoreActivity(){
-        
+
     }
     
-    static func ignoreActivityInFeedsDB(userID: String,notificationID: String){
-        Config.REF_ACTIVITYFEEDS.child(userID).child(notificationID).setValue(false)
+    static func removeActivity(userID: String,post: Post,noteID: String){
+        print("ignoreActivity")
+        print("noteID : " + "\(noteID)")
+        removeActivityInFeedsDB(userID: userID, notificationID: noteID)
+        removeYouActivityInFeedsDB(post: post, notificationID: noteID)
+
+    }
+    
+    static func removeActivityInFeedsDB(userID: String,notificationID: String){
+        Config.REF_ACTIVITYFEEDS.child(userID).child(notificationID).removeValue()
         Config.REF_DB.child("followers").child(userID).observe(.childAdded) { (snapshot) in
             let followerID = snapshot.key
-            Config.REF_DB.child("activityFeeds").child(followerID).child(notificationID).setValue(false)
+            Config.REF_DB.child("activityFeeds").child(followerID).child(notificationID).removeValue()
         }
     }
     
-    static func ignoreYouActivityInFeedsDB(post:Post,notificationID: String){
+    static func removeYouActivityInFeedsDB(post:Post,notificationID: String){
         let receiverID = post.uid
-        Config.REF_YOUACTIVITYFEEDS.child(receiverID!).child(notificationID).setValue(false)
-        print("check if the receiver's feed set to false")
-        print(receiverID)
-        print(notificationID)
+        Config.REF_YOUACTIVITYFEEDS.child(receiverID!).child(notificationID).removeValue()
+
     }
     
     
-    //TODO: if cancel the like or follow(set the noteid value as false), those method need to modified.In the feed, for a user , need to check the value of noteid, only true value needed to be observed
+    
     static func observeNotification(withId id: String, completion:@escaping (Notification)->Void){
         Config.REF_ACTIVITYFEEDS.child(id).observe(.childAdded,with:{snapshot in
             Config.REF_NOTIFICATIONS.child(snapshot.key).observeSingleEvent(of: .value, with: { (noteSnapshot) in

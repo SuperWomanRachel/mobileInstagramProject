@@ -20,7 +20,7 @@ class HomeTableViewCellHelper{
         }
     }
     
-    func incrementLikes(forRef ref: DatabaseReference, Completion: @escaping(Post) ->Void){
+    func incrementLikes(forRef ref: DatabaseReference,withPost thePost: Post, Completion: @escaping(Post) ->Void){
         ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
             if var post = currentData.value as? [String : AnyObject], let uid = Auth.auth().currentUser?.uid {
                 //                print("value 1 : \(String(describing: currentData.value))")
@@ -36,6 +36,7 @@ class HomeTableViewCellHelper{
                     // Star the post and add self to stars
                     likeCount += 1
                     likes[uid] = true
+                    
                 }
                 post["likeCount"] = likeCount as AnyObject?
                 post["likes"] = likes as AnyObject?
