@@ -76,9 +76,9 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     func updateLikeCount(post: Post){
-        print("________________")
-        print("update like count")
-        print(post.caption)
+//        print("________________")
+//        print("update like count")
+//        print(post.caption)
         if post.likeCount != 0  {
             let count = post.likeCount!
             self.viewAllLikesBtn.isEnabled = true
@@ -92,22 +92,24 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     
-    func incrementLikes(forRef ref: DatabaseReference){
+    func incrementLikes(forRef ref: DatabaseReference,withPost thePost: Post){
         ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
             if var post = currentData.value as? [String : AnyObject], let uid = Auth.auth().currentUser?.uid {
                 //                print("value 1 : \(String(describing: currentData.value))")
-                var likes: Dictionary<String, Bool>
-                likes = post["likes"] as? [String : Bool] ?? [:]
+                var likes: Dictionary<String, String>
+                likes = post["likes"] as? [String : String] ?? [:]
                 var likeCount = post["likeCount"] as? Int ?? 0
                 if let _ = likes[uid] {
                     // Unstar the post and remove self from stars
                     likeCount -= 1
+                    NotificationService.removeActivity(userID: uid,post: thePost, noteID: likes[uid]! )
                     likes.removeValue(forKey: uid)
                     
                 } else {
                     // Star the post and add self to stars
                     likeCount += 1
-                    likes[uid] = true
+                    //likes[uid] = true
+                    NotificationService.uploadActivity(currentUserID: uid, post: thePost, type: "like")
                 }
                 post["likeCount"] = likeCount as AnyObject?
                 post["likes"] = likes as AnyObject?
@@ -153,7 +155,7 @@ class HomeTableViewCell: UITableViewCell {
     
     
     
-    //load users who like this post
+    
     func fetchUsers(uid: String,completion : @escaping(User) -> Void){
         _ = Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dict = snapshot.value as? [String: Any]{
@@ -186,9 +188,9 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     @objc func LikeImageViewClicked(){
-        print("like imaage view clicked")
-        print(post?.caption)
-        let currentUserID = Auth.auth().currentUser?.uid
+//        print("like imaage view clicked")
+//        print(post?.caption)
+//        let currentUserID = Auth.auth().currentUser?.uid
         var postRef = Database.database().reference().child("posts").child((post?.postID)!)
         //        let likesRef = postRef.child("likes")
         if self.likeBtn.image == UIImage(named: "like") {
@@ -200,11 +202,11 @@ class HomeTableViewCell: UITableViewCell {
         }else{
             //            likesRef.child(currentUserID!).removeValue()
             self.likeBtn.image = UIImage(named: "like")
-            NotificationService.ignoreActivity(userID: currentUserID!, post: post!)
+            //NotificationService.ignoreActivity(userID: currentUserID!, post: post!)
             
         }
         postRef = Database.database().reference().child("posts").child((post?.postID)!)
-        incrementLikes(forRef: postRef)
+        incrementLikes(forRef: postRef,withPost: post!)
         
         
         
