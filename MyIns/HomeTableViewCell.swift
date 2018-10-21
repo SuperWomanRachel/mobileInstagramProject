@@ -76,9 +76,9 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     func updateLikeCount(post: Post){
-        print("________________")
-        print("update like count")
-        print(post.caption)
+//        print("________________")
+//        print("update like count")
+//        print(post.caption)
         if post.likeCount != 0  {
             let count = post.likeCount!
             self.viewAllLikesBtn.isEnabled = true
@@ -96,8 +96,8 @@ class HomeTableViewCell: UITableViewCell {
         ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
             if var post = currentData.value as? [String : AnyObject], let uid = Auth.auth().currentUser?.uid {
                 //                print("value 1 : \(String(describing: currentData.value))")
-                var likes: Dictionary<String, Bool>
-                likes = post["likes"] as? [String : Bool] ?? [:]
+                var likes: Dictionary<String, String>
+                likes = post["likes"] as? [String : String] ?? [:]
                 var likeCount = post["likeCount"] as? Int ?? 0
                 if let _ = likes[uid] {
                     // Unstar the post and remove self from stars
@@ -107,7 +107,7 @@ class HomeTableViewCell: UITableViewCell {
                 } else {
                     // Star the post and add self to stars
                     likeCount += 1
-                    likes[uid] = true
+                    likes[uid] = ""
                 }
                 post["likeCount"] = likeCount as AnyObject?
                 post["likes"] = likes as AnyObject?
@@ -186,15 +186,15 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     @objc func LikeImageViewClicked(){
-        print("like imaage view clicked")
-        print(post?.caption)
+//        print("like imaage view clicked")
+//        print(post?.caption)
         let currentUserID = Auth.auth().currentUser?.uid
         var postRef = Database.database().reference().child("posts").child((post?.postID)!)
         //        let likesRef = postRef.child("likes")
         if self.likeBtn.image == UIImage(named: "like") {
             //            likesRef.child(currentUserID!).setValue(true)
             
-//            NotificationService.uploadActivity(currentUserID: currentUserID!, post: post!,type: "like")
+            NotificationService.uploadActivity(currentUserID: currentUserID!, post: post!,type: "like")
             
             self.likeBtn.image = UIImage(named: "liked")
         }else{

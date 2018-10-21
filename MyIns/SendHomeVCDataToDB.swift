@@ -32,10 +32,11 @@ class SendDataToDB{
         }
     }
     
-    func fetchPostFromFeeds(withUid currentUserID:String,Completion:@escaping(String) -> Void){
-        Feeds_REF.child(currentUserID).observe(.childAdded) { (snapshot) in
-            Completion(snapshot.key)
-        }
-    }
+//    func fetchPostFromFeeds(withUid currentUserID:String,Completion:@escaping(String) -> Void){
+//        Feeds_REF.child(currentUserID).observe(.childAdded) { (snapshot) in
+//            Completion(snapshot.key)
+//        }
+//    }
+    
     
 }
